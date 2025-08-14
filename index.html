@@ -7,57 +7,67 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f7fa;
-      color: #333;
+      margin: 0; padding: 0;
+      background: #f5f7fa; color: #333;
+      overflow-x: hidden;
     }
+
     header {
-      background: #4a90e2;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
+      background: #4a90e2; color: white; text-align: center; padding: 3rem 1rem;
+      animation: fadeInDown 1s ease forwards;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
+    header h1 { margin: 0; font-size: 2.2rem; }
+
     main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      text-align: center;
+      max-width: 900px; margin: 2rem auto; padding: 0 1rem; text-align: center;
     }
+
     .feature {
-      background: white;
-      margin: 1rem 0;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      background: white; margin: 1.5rem 0; padding: 2rem 1rem; border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05); display: flex; align-items: center;
+      flex-wrap: wrap; opacity: 0; transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
     }
-    .feature h2 {
-      margin-top: 0;
-      color: #4a90e2;
+
+    .feature img {
+      width: 80px; height: 80px; margin-right: 1.5rem;
+      flex-shrink: 0;
     }
+
+    .feature-text { text-align: left; flex: 1; }
+
+    .feature h2 { margin-top: 0; color: #4a90e2; font-size: 1.5rem; }
+    .feature p { margin: 0.5rem 0 0; line-height: 1.5; }
+
     .cta-button {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.75rem 2rem;
-      background: #4a90e2;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
+      display: inline-block; margin-top: 2rem; padding: 0.8rem 2.5rem; 
+      background: #4a90e2; color: white; border-radius: 8px; text-decoration: none;
+      font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     .cta-button:hover {
       background: #357ABD;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
     }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      color: #888;
-      font-size: 0.9rem;
+
+    footer { text-align: center; padding: 1rem; color: #888; font-size: 0.9rem; }
+
+    /* 动画效果 */
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .feature { flex-direction: column; text-align: center; }
+      .feature img { margin: 0 0 1rem 0; }
+      .feature-text { text-align: center; }
     }
   </style>
 </head>
@@ -65,67 +75,75 @@
   <header>
     <h1 id="title">智能加密货币挖矿平台</h1>
   </header>
+
   <main>
     <div class="feature">
-      <h2 id="feature1-title">安全可靠</h2>
-      <p id="feature1-desc">您的资金完全由您掌控，智能挖矿每日产生收益，操作简单，无需复杂设置。</p>
+      <img src="https://img.icons8.com/fluency/96/security-checked.png" alt="安全图标">
+      <div class="feature-text">
+        <h2 id="feature1-title">安全可靠</h2>
+        <p id="feature1-desc">您的资金完全由您掌控，智能挖矿每日产生收益，操作简单，无需复杂设置。</p>
+      </div>
     </div>
+
     <div class="feature">
-      <h2 id="feature2-title">随时随地</h2>
-      <p id="feature2-desc">手机、电脑均可开启挖矿，随时查看收益，方便快捷。</p>
+      <img src="https://img.icons8.com/fluency/96/clock.png" alt="随时随地图标">
+      <div class="feature-text">
+        <h2 id="feature2-title">随时随地</h2>
+        <p id="feature2-desc">手机、电脑均可开启挖矿，随时查看收益，方便快捷。</p>
+      </div>
     </div>
+
     <div class="feature">
-      <h2 id="feature3-title">高收益</h2>
-      <p id="feature3-desc">每天都有收益，可提现，透明公开，适合长期投资和学习加密货币技术。</p>
+      <img src="https://img.icons8.com/fluency/96/money-bag.png" alt="高收益图标">
+      <div class="feature-text">
+        <h2 id="feature3-title">高收益</h2>
+        <p id="feature3-desc">每天都有收益，可提现，透明公开，适合长期投资和学习加密货币技术。</p>
+      </div>
     </div>
-    <a href="#" class="cta-button" id="cta-button">立即开始挖矿</a>
+
+    <a href="https://lihi3.com/v3ir0" class="cta-button" id="cta-button">立即开始挖矿</a>
   </main>
+
   <footer>
     &copy; 2025 智能挖矿平台
   </footer>
 
   <script>
-    // 多语言文本
     const translations = {
-      en: {
-        title: "Smart Crypto Mining Platform",
-        feature1Title: "Secure & Reliable",
-        feature1Desc: "Your funds are fully controlled by you. Smart mining generates daily profits with simple operation.",
-        feature2Title: "Anytime, Anywhere",
-        feature2Desc: "Start mining on mobile or desktop, monitor profits anytime.",
-        feature3Title: "High Returns",
-        feature3Desc: "Daily returns, withdraw anytime, transparent and suitable for long-term investment.",
-        cta: "Start Mining Now"
-      },
-      zh: {
-        title: "智能加密货币挖矿平台",
-        feature1Title: "安全可靠",
-        feature1Desc: "您的资金完全由您掌控，智能挖矿每日产生收益，操作简单，无需复杂设置。",
-        feature2Title: "随时随地",
-        feature2Desc: "手机、电脑均可开启挖矿，随时查看收益，方便快捷。",
-        feature3Title: "高收益",
-        feature3Desc: "每天都有收益，可提现，透明公开，适合长期投资和学习加密货币技术。",
-        cta: "立即开始挖矿"
-      },
-      ar: {
-        title: "منصة التعدين الذكية للعملات المشفرة",
-        feature1Title: "آمن وموثوق",
-        feature1Desc: "أموالك تحت سيطرتك الكاملة، التعدين الذكي يحقق أرباحاً يومية، سهل الاستخدام.",
-        feature2Title: "في أي وقت وأي مكان",
-        feature2Desc: "ابدأ التعدين عبر الهاتف أو الكمبيوتر، وراقب الأرباح في أي وقت.",
-        feature3Title: "عوائد عالية",
-        feature3Desc: "عوائد يومية، سحب في أي وقت، شفاف ومناسب للاستثمار طويل الأمد.",
-        cta: "ابدأ التعدين الآن"
-      }
+      en: { title:"Smart Crypto Mining Platform", feature1Title:"Secure & Reliable", feature1Desc:"Your funds are fully controlled by you. Smart mining generates daily profits with simple operation.", feature2Title:"Anytime, Anywhere", feature2Desc:"Start mining on mobile or desktop, monitor profits anytime.", feature3Title:"High Returns", feature3Desc:"Daily returns, withdraw anytime, transparent and suitable for long-term investment.", cta:"Start Mining Now" },
+      zh: { title:"智能加密货币挖矿平台", feature1Title:"安全可靠", feature1Desc:"您的资金完全由您掌控，智能挖矿每日产生收益，操作简单，无需复杂设置。", feature2Title:"随时随地", feature2Desc:"手机、电脑均可开启挖矿，随时查看收益，方便快捷。", feature3Title:"高收益", feature3Desc:"每天都有收益，可提现，透明公开，适合长期投资和学习加密货币技术。", cta:"立即开始挖矿" },
+      ar: { title:"منصة التعدين الذكية للعملات المشفرة", feature1Title:"آمن وموثوق", feature1Desc:"أموالك تحت سيطرتك الكاملة، التعدين الذكي يحقق أرباحاً يومية، سهل الاستخدام.", feature2Title:"في أي وقت وأي مكان", feature2Desc:"ابدأ التعدين عبر الهاتف أو الكمبيوتر، وراقب الأرباح في أي وقت.", feature3Title:"عوائد عالية", feature3Desc:"عوائد يومية، سحب في أي وقت، شفاف ومناسب للاستثمار طويل الأمد.", cta:"ابدأ التعدين الآن" },
+      fr: { title:"Plateforme de Minage Crypto Intelligente", feature1Title:"Sûr & Fiable", feature1Desc:"Vos fonds sont entièrement sous votre contrôle. Le minage intelligent génère des profits quotidiens facilement.", feature2Title:"À tout moment, partout", feature2Desc:"Commencez le minage sur mobile ou ordinateur, suivez vos profits à tout moment.", feature3Title:"Hauts rendements", feature3Desc:"Profits quotidiens, retrait à tout moment, transparent et adapté à l'investissement long terme.", cta:"Commencer le Minage" },
+      es: { title:"Plataforma de Minería Cripto Inteligente", feature1Title:"Seguro y Fiable", feature1Desc:"Tus fondos están completamente bajo tu control. La minería inteligente genera beneficios diarios fácilmente.", feature2Title:"En cualquier momento y lugar", feature2Desc:"Comienza la minería en móvil o PC, monitoriza tus beneficios en cualquier momento.", feature3Title:"Altos Rendimientos", feature3Desc:"Beneficios diarios, retiro en cualquier momento, transparente y adecuado para inversión a largo plazo.", cta:"Comenzar Minería" },
+      de: { title:"Intelligente Krypto-Mining-Plattform", feature1Title:"Sicher & Zuverlässig", feature1Desc:"Ihre Gelder sind vollständig unter Ihrer Kontrolle. Smart Mining erzeugt täglich Gewinne bei einfacher Bedienung.", feature2Title:"Jederzeit, Überall", feature2Desc:"Starten Sie Mining auf Handy oder PC, überwachen Sie Gewinne jederzeit.", feature3Title:"Hohe Renditen", feature3Desc:"Tägliche Renditen, jederzeit abhebbar, transparent und für langfristige Investitionen geeignet.", cta:"Jetzt Minen" },
+      ru: { title:"Платформа Умного Крипто-Майнинга", feature1Title:"Безопасно и Надёжно", feature1Desc:"Ваши средства полностью под вашим контролем. Умный майнинг приносит ежедневную прибыль.", feature2Title:"В любое время и в любом месте", feature2Desc:"Начните майнинг на мобильном или ПК, отслеживайте прибыль в любое время.", feature3Title:"Высокая доходность", feature3Desc:"Ежедневная прибыль, вывод в любое время, прозрачно и подходит для долгосрочных инвестиций.", cta:"Начать майнинг" },
+      id: { title:"Platform Penambangan Crypto Cerdas", feature1Title:"Aman & Terpercaya", feature1Desc:"Dana Anda sepenuhnya di bawah kendali Anda. Penambangan cerdas menghasilkan keuntungan harian dengan mudah.", feature2Title:"Kapan Saja, Di Mana Saja", feature2Desc:"Mulai penambangan di ponsel atau PC, pantau keuntungan kapan saja.", feature3Title:"Hasil Tinggi", feature3Desc:"Keuntungan harian, tarik kapan saja, transparan dan cocok untuk investasi jangka panjang.", cta:"Mulai Menambang" },
+      pt: { title:"Plataforma de Mineração Cripto Inteligente", feature1Title:"Seguro & Confiável", feature1Desc:"Seus fundos estão totalmente sob seu controle. Mineração inteligente gera lucros diários facilmente.", feature2Title:"A qualquer hora, em qualquer lugar", feature2Desc:"Comece a minerar no celular ou computador, monitore lucros a qualquer momento.", feature3Title:"Altos Rendimentos", feature3Desc:"Retornos diários, saque a qualquer momento, transparente e adequado para investimento a longo prazo.", cta:"Comece a Minerar" },
+      ja: { title:"スマート暗号通貨マイニングプラットフォーム", feature1Title:"安全で信頼性の高い", feature1Desc:"資金は完全にあなたの管理下にあります。スマートマイニングで毎日利益を得られます。", feature2Title:"いつでもどこでも", feature2Desc:"スマホやPCでマイニングを開始し、いつでも収益を確認できます。", feature3Title:"高い収益", feature3Desc:"毎日の利益、いつでも引き出し可能、透明性が高く長期投資に最適。", cta:"マイニングを始める" },
+      ko: { title:"스마트 암호화폐 채굴 플랫폼", feature1Title:"안전하고 신뢰성 있는", feature1Desc:"자금은 완전히 사용자 통제하에 있습니다. 스마트 채굴은 매일 수익을 생성합니다.", feature2Title:"언제 어디서나", feature2Desc:"모바일 또는 PC에서 채굴을 시작하고 수익을 언제든 확인할 수 있습니다.", feature3Title:"높은 수익", feature3Desc:"일일 수익, 언제든 출금 가능, 투명하며 장기 투자에 적합합니다.", cta:"채굴 시작하기" },
+      it: { title:"Piattaforma di Mining Cripto Intelligente", feature1Title:"Sicuro & Affidabile", feature1Desc:"I tuoi fondi sono completamente sotto il tuo controllo. Il mining intelligente genera profitti giornalieri facilmente.", feature2Title:"Ovunque, in qualsiasi momento", feature2Desc:"Avvia il mining su mobile o PC, monitora i profitti in qualsiasi momento.", feature3Title:"Alti Rendimenti", feature3Desc:"Profitti giornalieri, prelievo in qualsiasi momento, trasparente e adatto per investimenti a lungo termine.", cta:"Inizia il Mining" }
     };
 
-    // 获取用户浏览器语言
     const userLang = navigator.language || navigator.userLanguage;
-    const lang = userLang.startsWith('ar') ? 'ar' : userLang.startsWith('zh') ? 'zh' : 'en';
+    let lang = 'en';
+    for (const code in translations) {
+      if(userLang.toLowerCase().startsWith(code)) { lang = code; break; }
+    }
     const t = translations[lang];
 
-    // 替换文本
     document.getElementById('title').innerText = t.title;
     document.getElementById('feature1-title').innerText = t.feature1Title;
     document.getElementById('feature1-desc').innerText = t.feature1Desc;
-    document.getElementById('feature2-title').innerText = t.feature2Titl
+    document.getElementById('feature2-title').innerText = t.feature2Title;
+    document.getElementById('feature2-desc').innerText = t.feature2Desc;
+    document.getElementById('feature3-title').innerText = t.feature3Title;
+    document.getElementById('feature3-desc').innerText = t.feature3Desc;
+    document.getElementById('cta-button').innerText = t.cta;
+
+    // 动态延迟显示每个功能块
+    document.querySelectorAll('.feature').forEach((el, idx) => {
+      el.style.animationDelay = `${idx * 0.3 + 0.5}s`;
+    });
+  </script>
+</body>
+</html>
