@@ -1,99 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>智能挖矿</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <style>
-    * {margin:0;padding:0;box-sizing:border-box;}
-    body, html {
-      width: 100%;
-      height: 100%;
-      font-family: 'Roboto', sans-serif;
-      overflow-x: hidden;
-      background: #0a0a0a;
-      color: #fff;
-    }
-    header {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 20px #00f0ff;
-    }
-    header p {
-      font-size: 1.2rem;
-      margin-bottom: 40px;
-      color: #a0a0a0;
-    }
-    .btn {
-      background: linear-gradient(45deg, #00f0ff, #ff00f0);
-      padding: 15px 40px;
-      border-radius: 30px;
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #00f0ff, 0 0 20px #ff00f0;
-    }
-    .section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-    }
-    .feature-card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 30px;
-      flex: 1 1 250px;
-      text-align: center;
-      transition: 0.3s;
-    }
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px #00f0ff;
-    }
-    .feature-card img {
-      width: 80px;
-      margin-bottom: 20px;
-    }
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #666;
-    }
-    canvas {
-      position: absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      z-index: -1;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能挖矿</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+  * {margin:0;padding:0;box-sizing:border-box;}
+  html, body {width:100%; height:100%; font-family: 'Roboto', sans-serif; overflow-x:hidden; background:#0a0a0a; color:#fff;}
+  header {position:relative; width:100%; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; overflow:hidden;}
+  header h1 {font-size:3rem; margin-bottom:20px; text-shadow:0 0 20px #00f0ff;}
+  header p {font-size:1.2rem; margin-bottom:40px; color:#a0a0a0;}
+  .btn {background:linear-gradient(45deg,#00f0ff,#ff00f0); padding:15px 40px; border-radius:30px; color:#fff; font-weight:bold; text-decoration:none; transition:0.3s;}
+  .btn:hover {transform:scale(1.1); box-shadow:0 0 20px #00f0ff,0 0 20px #ff00f0;}
+  .section {padding:80px 20px; max-width:1200px; margin:0 auto;}
+  .features {display:flex; flex-wrap:wrap; gap:30px; justify-content:center;}
+  .feature-card {background:rgba(255,255,255,0.05); backdrop-filter:blur(10px); border-radius:20px; padding:30px; flex:1 1 250px; text-align:center; transition:0.3s;}
+  .feature-card:hover {transform:translateY(-10px); box-shadow:0 0 20px #00f0ff;}
+  .feature-card img {width:80px; margin-bottom:20px;}
+  footer {text-align:center; padding:40px 20px; color:#666;}
+  canvas {position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;}
+</style>
 </head>
 <body>
 
@@ -129,80 +57,99 @@
   &copy; 2025 智能挖矿平台. 保留所有权利.
 </footer>
 
-<!-- 3D 粒子效果 -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+<!-- 粒子动画 -->
 <script>
-  let scene = new THREE.Scene();
-  let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-  let renderer = new THREE.WebGLRenderer({canvas: document.getElementById('particles'), alpha:true});
-  renderer.setSize(window.innerWidth, window.innerHeight);
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
 
-  let geometry = new THREE.BufferGeometry();
-  let particleCount = 1000;
-  let positions = new Float32Array(particleCount * 3);
-  for(let i=0;i<particleCount*3;i++){
-    positions[i] = (Math.random()-0.5)*200;
+let particlesArray = [];
+const particleCount = 200;
+
+class Particle {
+  constructor(){
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.size = Math.random() * 2 + 1;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
   }
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  let material = new THREE.PointsMaterial({color:0x00f0ff, size:0.5});
-  let particles = new THREE.Points(geometry, material);
-  scene.add(particles);
-
-  camera.position.z = 50;
-
-  function animate(){
-    requestAnimationFrame(animate);
-    particles.rotation.y += 0.001;
-    particles.rotation.x += 0.001;
-    renderer.render(scene, camera);
+  update(){
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if(this.x < 0 || this.x > width) this.speedX *= -1;
+    if(this.y < 0 || this.y > height) this.speedY *= -1;
   }
-  animate();
+  draw(){
+    ctx.fillStyle = '#00f0ff';
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+    ctx.fill();
+  }
+}
 
-  window.addEventListener('resize', ()=>{
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+function init(){
+  particlesArray = [];
+  for(let i=0;i<particleCount;i++){
+    particlesArray.push(new Particle());
+  }
+}
+function animate(){
+  ctx.clearRect(0,0,width,height);
+  particlesArray.forEach(p=>{
+    p.update();
+    p.draw();
   });
+  requestAnimationFrame(animate);
+}
+window.addEventListener('resize', ()=>{
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+  init();
+});
+
+init();
+animate();
 </script>
 
-<!-- 自动识别浏览器语言 -->
+<!-- 自动识别语言 -->
 <script>
-  const lang = navigator.language || navigator.userLanguage;
-  if(lang.startsWith('zh')){
-    document.getElementById('title').innerText = '智能挖矿';
-    document.getElementById('subtitle').innerText = '每天轻松产生收益';
-    document.getElementById('startBtn').innerText = '立即开始';
-    document.getElementById('featuresTitle').innerText = '功能优势';
-    document.getElementById('feature1Title').innerText = '高效算力';
-    document.getElementById('feature1Desc').innerText = '通过平台产生智能算力，收益稳定可靠。';
-    document.getElementById('feature2Title').innerText = '自动收益';
-    document.getElementById('feature2Desc').innerText = '每天自动计算收益，无需人工操作。';
-    document.getElementById('feature3Title').innerText = '安全可靠';
-    document.getElementById('feature3Desc').innerText = '采用先进加密技术，保证资金安全。';
-  } else if(lang.startsWith('ar')){
-    document.getElementById('title').innerText = 'التعدين الذكي';
-    document.getElementById('subtitle').innerText = 'تحقيق أرباح يومية بسهولة';
-    document.getElementById('startBtn').innerText = 'ابدأ الآن';
-    document.getElementById('featuresTitle').innerText = 'المميزات';
-    document.getElementById('feature1Title').innerText = 'قوة حسابية عالية';
-    document.getElementById('feature1Desc').innerText = 'قم بإنشاء قوة حسابية ذكية من خلال المنصة، الأرباح مستقرة وموثوقة.';
-    document.getElementById('feature2Title').innerText = 'أرباح تلقائية';
-    document.getElementById('feature2Desc').innerText = 'يتم حساب الأرباح يومياً تلقائياً دون تدخل منك.';
-    document.getElementById('feature3Title').innerText = 'آمن وموثوق';
-    document.getElementById('feature3Desc').innerText = 'يتم استخدام تقنيات التشفير المتقدمة لضمان أمان الأموال.';
-  } else {
-    // 默认英语
-    document.getElementById('title').innerText = 'Smart Mining';
-    document.getElementById('subtitle').innerText = 'Earn daily with ease';
-    document.getElementById('startBtn').innerText = 'Get Started';
-    document.getElementById('featuresTitle').innerText = 'Features';
-    document.getElementById('feature1Title').innerText = 'High Efficiency';
-    document.getElementById('feature1Desc').innerText = 'Generate smart mining power via our platform with stable profits.';
-    document.getElementById('feature2Title').innerText = 'Automatic Earnings';
-    document.getElementById('feature2Desc').innerText = 'Daily earnings are calculated automatically without manual effort.';
-    document.getElementById('feature3Title').innerText = 'Secure & Reliable';
-    document.getElementById('feature3Desc').innerText = 'Advanced encryption ensures your funds are safe.';
-  }
+const lang = navigator.language || navigator.userLanguage;
+if(lang.startsWith('zh')){
+  document.getElementById('title').innerText = '智能挖矿';
+  document.getElementById('subtitle').innerText = '每天轻松产生收益';
+  document.getElementById('startBtn').innerText = '立即开始';
+  document.getElementById('featuresTitle').innerText = '功能优势';
+  document.getElementById('feature1Title').innerText = '高效算力';
+  document.getElementById('feature1Desc').innerText = '通过平台产生智能算力，收益稳定可靠。';
+  document.getElementById('feature2Title').innerText = '自动收益';
+  document.getElementById('feature2Desc').innerText = '每天自动计算收益，无需人工操作。';
+  document.getElementById('feature3Title').innerText = '安全可靠';
+  document.getElementById('feature3Desc').innerText = '采用先进加密技术，保证资金安全。';
+} else if(lang.startsWith('ar')){
+  document.getElementById('title').innerText = 'التعدين الذكي';
+  document.getElementById('subtitle').innerText = 'تحقيق أرباح يومية بسهولة';
+  document.getElementById('startBtn').innerText = 'ابدأ الآن';
+  document.getElementById('featuresTitle').innerText = 'المميزات';
+  document.getElementById('feature1Title').innerText = 'قوة حسابية عالية';
+  document.getElementById('feature1Desc').innerText = 'قم بإنشاء قوة حسابية ذكية من خلال المنصة، الأرباح مستقرة وموثوقة.';
+  document.getElementById('feature2Title').innerText = 'أرباح تلقائية';
+  document.getElementById('feature2Desc').innerText = 'يتم حساب الأرباح يومياً تلقائياً دون تدخل منك.';
+  document.getElementById('feature3Title').innerText = 'آمن وموثوق';
+  document.getElementById('feature3Desc').innerText = 'يتم استخدام تقنيات التشفير المتقدمة لضمان أمان الأموال.';
+} else {
+  document.getElementById('title').innerText = 'Smart Mining';
+  document.getElementById('subtitle').innerText = 'Earn daily with ease';
+  document.getElementById('startBtn').innerText = 'Get Started';
+  document.getElementById('featuresTitle').innerText = 'Features';
+  document.getElementById('feature1Title').innerText = 'High Efficiency';
+  document.getElementById('feature1Desc').innerText = 'Generate smart mining power via our platform with stable profits.';
+  document.getElementById('feature2Title').innerText = 'Automatic Earnings';
+  document.getElementById('feature2Desc').innerText = 'Daily earnings are calculated automatically without manual effort.';
+  document.getElementById('feature3Title').innerText = 'Secure & Reliable';
+  document.getElementById('feature3Desc').innerText = 'Advanced encryption ensures your funds are safe.';
+}
 </script>
 
 </body>
