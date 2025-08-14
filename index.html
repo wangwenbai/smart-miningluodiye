@@ -1,422 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Smart Mining | 智能挖矿</title>
-<meta name="description" content="Smart Mining landing page with auto language detection (22 languages), security, profit, advantages, and client earnings in a futuristic design." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能挖矿 Smart Mining</title>
 <style>
-  :root{
-    --bg:#070b14;--card:rgba(255,255,255,.06);--text:#eaf6ff;--pri:#00f0ff;--acc:#00ffae;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%;font-family:System-ui,-apple-system,"Segoe UI",Roboto,Inter,Arial,"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei","Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";color:var(--text);background:var(--bg);}
-  body{overflow-x:hidden}
-  a{color:inherit;text-decoration:none}
-  header{position:relative;text-align:center;padding:5rem 1rem 3rem}
-  h1{margin:.2rem 0 0;font-size:clamp(2rem,6vw,3.2rem);color:var(--pri);letter-spacing:.5px}
-  .subtitle{opacity:.9;font-size:clamp(1rem,2.4vw,1.25rem);}
-  .container{max-width:1200px;margin:0 auto;padding:0 1rem}
-  section{padding:2.2rem 0}
-  .grid{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-  .card{background:var(--card);border:1px solid rgba(255,255,255,.07);backdrop-filter:blur(8px);border-radius:18px;padding:1.2rem;transition:transform .3s, box-shadow .3s}
-  .card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,240,255,.08)}
-  .kpi{font-size:2rem;color:var(--acc);margin:.4rem 0}
-  footer{padding:2rem 1rem;text-align:center;opacity:.7;border-top:1px solid rgba(255,255,255,.07)}
-  .cta{display:inline-block;margin-top:1rem;padding:.8rem 1.2rem;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
-  .cta:hover{border-color:var(--pri)}
-  /* top nav */
-  .topbar{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem;background:linear-gradient(180deg,rgba(7,11,20,.85),rgba(7,11,20,0));z-index:20}
-  .brand{display:flex;gap:.6rem;align-items:center}
-  .logo{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 180deg,var(--pri),var(--acc));box-shadow:0 0 24px rgba(0,240,255,.35)}
-  .lang-select{appearance:none;background:var(--card);color:var(--text);border:1px solid rgba(255,255,255,.1);padding:.5rem .9rem;border-radius:12px}
-  /* clients */
-  .client{display:flex;gap:.9rem;align-items:center}
-  .avatar{width:58px;height:58px;border-radius:50%;border:2px solid var(--pri);object-fit:cover}
-  .client .earn{color:var(--acc);font-weight:600}
-  /* particles canvas */
-  #bg{position:fixed;inset:0;z-index:-1}
-  /* RTL support */
-  [dir="rtl"]{direction:rtl}
-  /* subtle animations */
-  .fade-in{opacity:0;transform:translateY(8px);animation:fade .8s .1s forwards}
-  @keyframes fade{to{opacity:1;transform:none}}
+    body {margin:0;font-family:Arial,sans-serif;background:#000;color:#fff;overflow-x:hidden;}
+    #particles-js {position:fixed;width:100%;height:100%;z-index:-1;}
+    header{text-align:center;padding:50px 20px;}
+    header h1{font-size:2.5em;margin-bottom:10px;}
+    header p{font-size:1.2em;opacity:0.8;}
+    section{padding:50px 20px;max-width:1000px;margin:auto;}
+    .stats{display:flex;justify-content:space-around;flex-wrap:wrap;margin-top:30px;}
+    .stat{text-align:center;margin:20px;}
+    .stat h2{font-size:2em;color:#0ff;}
+    .clients{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:30px;}
+    .client-card{background:rgba(255,255,255,0.05);border-radius:10px;padding:20px;text-align:center;transition:transform 0.3s;}
+    .client-card:hover{transform:translateY(-5px);}
+    .client-card img{width:80px;height:80px;border-radius:50%;margin-bottom:10px;}
+    button{padding:15px 30px;background:#0ff;border:none;border-radius:30px;cursor:pointer;font-size:1.1em;transition:0.3s;}
+    button:hover{background:#09c;}
 </style>
 </head>
 <body>
-  <canvas id="bg" aria-hidden="true"></canvas>
-  <div class="topbar">
-    <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
-      <strong>Smart Mining</strong>
+
+<div id="particles-js"></div>
+
+<header>
+    <!-- LOGO图片路径，可修改 -->
+    <img src="https://via.placeholder.com/150x80?text=Logo" alt="Logo" style="margin-bottom:20px;">
+    <!-- 主标题 -->
+    <h1 id="title">智能挖矿</h1>
+    <!-- 副标题 -->
+    <p id="subtitle">安全高收益的智能挖矿平台</p>
+    <!-- 按钮链接，可修改href -->
+    <a id="cta-link" href="https://example.com">
+        <button id="cta-btn">立即开始</button>
+    </a>
+</header>
+
+<section>
+    <h2 id="section-safety">安全保障</h2>
+    <p id="section-safety-desc">多重加密保护您的资产</p>
+
+    <h2 id="section-profit">收益优势</h2>
+    <p id="section-profit-desc">每日自动计算收益，透明可查</p>
+
+    <h2 id="section-advantage">平台优势</h2>
+    <p id="section-advantage-desc">低风险，高效率，支持多币种</p>
+
+    <div class="stats">
+        <div class="stat">
+            <h2 id="profit-num">0</h2>
+            <p id="profit-label">日收益（USDT）</p>
+        </div>
+        <div class="stat">
+            <h2 id="users-num">0</h2>
+            <p id="users-label">活跃用户</p>
+        </div>
     </div>
-    <select id="langSwitcher" class="lang-select" title="Language"></select>
-  </div>
 
-  <header class="fade-in">
-    <div class="container">
-      <h1 id="t_title">Smart Mining</h1>
-      <p class="subtitle" id="t_subtitle">Secure • Profitable • Innovative</p>
-      <a class="cta" id="t_cta" href="#start">Get Started</a>
+    <div class="clients">
+        <div class="client-card">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="客户1">
+            <h3>张三</h3>
+            <p id="client1-profit">本月收益 1200 USDT</p>
+        </div>
+        <div class="client-card">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="客户2">
+            <h3>李四</h3>
+            <p id="client2-profit">本月收益 980 USDT</p>
+        </div>
     </div>
-  </header>
+</section>
 
-  <main class="container">
-    <section class="fade-in">
-      <h2 id="t_why">Why Choose Us?</h2>
-      <div class="grid">
-        <div class="card">
-          <h3 id="t_security">Top Security</h3>
-          <p id="t_security_text">Military‑grade encryption and multi‑layer risk control to safeguard your assets.</p>
-        </div>
-        <div class="card">
-          <h3 id="t_profit">Daily Profit (USDT)</h3>
-          <div class="kpi" id="profitNum">0</div>
-          <p id="t_profit_tip">Real-time simulation of daily income growth.</p>
-        </div>
-        <div class="card">
-          <h3 id="t_adv">Advantages</h3>
-          <p id="t_adv_text">Low energy consumption, high stability, and automatic optimization for maximum returns.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="fade-in">
-      <h2 id="t_clients">Client Earnings</h2>
-      <div class="grid">
-        <div class="card client">
-          <img class="avatar" src="https://i.pravatar.cc/120?img=12" alt="Alex Johnson"/>
-          <div>
-            <div><strong>Alex Johnson</strong></div>
-            <div class="earn" id="c1">Earned $4,532 last month</div>
-          </div>
-        </div>
-        <div class="card client">
-          <img class="avatar" src="https://i.pravatar.cc/120?img=22" alt="Li Wei"/>
-          <div>
-            <div><strong>Li Wei</strong></div>
-            <div class="earn" id="c2">Earned $3,845 last month</div>
-          </div>
-        </div>
-        <div class="card client">
-          <img class="avatar" src="https://i.pravatar.cc/120?img=32" alt="Maria Garcia"/>
-          <div>
-            <div><strong>Maria Garcia</strong></div>
-            <div class="earn" id="c3">Earned $5,102 last month</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © <span id="year"></span> Smart Mining · <span id="t_rights">All rights reserved.</span>
-  </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
-// ===== Language Packs (22 languages incl. pt-PT & pt-BR, zh-Hant) =====
-// Keys used across the page
-// t_title, t_subtitle, t_cta, t_why, t_security, t_security_text, t_profit, t_profit_tip, t_adv, t_adv_text, t_clients, c1,c2,c3, t_rights
-const L = {
-  "en":{
-    t_title:"Smart Mining", t_subtitle:"Secure • Profitable • Innovative", t_cta:"Get Started", t_why:"Why Choose Us?",
-    t_security:"Top Security", t_security_text:"Military-grade encryption and multi-layer risk control to safeguard your assets.",
-    t_profit:"Daily Profit (USDT)", t_profit_tip:"Real-time simulation of daily income growth.",
-    t_adv:"Advantages", t_adv_text:"Low energy consumption, high stability, and automatic optimization for maximum returns.",
-    t_clients:"Client Earnings", c1:"Earned $4,532 last month", c2:"Earned $3,845 last month", c3:"Earned $5,102 last month",
-    t_rights:"All rights reserved."
-  },
-  "zh":{
-    t_title:"智能挖矿", t_subtitle:"安全 · 高收益 · 创新", t_cta:"立即开始", t_why:"为什么选择我们？",
-    t_security:"顶级安全", t_security_text:"军工级加密 + 多层风控，全面保障您的资产安全。",
-    t_profit:"每日收益（USDT）", t_profit_tip:"实时模拟每日收益增长。",
-    t_adv:"优势", t_adv_text:"低能耗、高稳定、自动优化，持续提升回报。",
-    t_clients:"客户收益展示", c1:"上月收益 $4,532", c2:"上月收益 $3,845", c3:"上月收益 $5,102",
-    t_rights:"保留所有权利"
-  },
-  "zh-Hant":{
-    t_title:"智慧挖礦", t_subtitle:"安全 · 高收益 · 創新", t_cta:"立即開始", t_why:"為什麼選擇我們？",
-    t_security:"頂級安全", t_security_text:"軍規級加密與多層風控，全面守護您的資產。",
-    t_profit:"每日收益（USDT）", t_profit_tip:"即時模擬每日收益成長。",
-    t_adv:"優勢", t_adv_text:"低能耗、高穩定、自動優化，最大化回報。",
-    t_clients:"客戶收益展示", c1:"上月收益 $4,532", c2:"上月收益 $3,845", c3:"上月收益 $5,102",
-    t_rights:"保留所有權利"
-  },
-  "fr":{
-    t_title:"Mining Intelligent", t_subtitle:"Sécurisé • Rentable • Innovant", t_cta:"Commencer", t_why:"Pourquoi nous choisir ?",
-    t_security:"Sécurité maximale", t_security_text:"Chiffrement de niveau militaire et contrôle des risques multicouches pour protéger vos actifs.",
-    t_profit:"Gain quotidien (USDT)", t_profit_tip:"Simulation en temps réel de la croissance des revenus.",
-    t_adv:"Atouts", t_adv_text:"Faible consommation, grande stabilité et optimisation automatique pour un rendement maximal.",
-    t_clients:"Revenus des clients", c1:"A gagné 4 532 $ le mois dernier", c2:"A gagné 3 845 $ le mois dernier", c3:"A gagné 5 102 $ le mois dernier",
-    t_rights:"Tous droits réservés."
-  },
-  "it":{
-    t_title:"Mining Intelligente", t_subtitle:"Sicuro • Redditizio • Innovativo", t_cta:"Inizia ora", t_why:"Perché sceglierci?",
-    t_security:"Massima sicurezza", t_security_text:"Crittografia di livello militare e controllo del rischio multilivello per proteggere i tuoi asset.",
-    t_profit:"Profitto giornaliero (USDT)", t_profit_tip:"Simulazione in tempo reale della crescita dei ricavi.",
-    t_adv:"Vantaggi", t_adv_text:"Basso consumo energetico, alta stabilità e ottimizzazione automatica per il massimo rendimento.",
-    t_clients:"Guadagni dei clienti", c1:"Ha guadagnato $4.532 lo scorso mese", c2:"Ha guadagnato $3.845 lo scorso mese", c3:"Ha guadagnato $5.102 lo scorso mese",
-    t_rights:"Tutti i diritti riservati."
-  },
-  "ja":{
-    t_title:"スマートマイニング", t_subtitle:"安全・高収益・革新", t_cta:"今すぐ開始", t_why:"選ばれる理由",
-    t_security:"最高レベルのセキュリティ", t_security_text:"軍事レベルの暗号化と多層リスク管理で資産を保護。",
-    t_profit:"日次収益（USDT）", t_profit_tip:"日々の収益成長をリアルタイムでシミュレーション。",
-    t_adv:"強み", t_adv_text:"低消費電力・高い安定性・自動最適化で収益最大化。",
-    t_clients:"お客様の収益", c1:"先月の収益 $4,532", c2:"先月の収益 $3,845", c3:"先月の収益 $5,102",
-    t_rights:"無断転載を禁じます。"
-  },
-  "ko":{
-    t_title:"스마트 마이닝", t_subtitle:"안전 • 고수익 • 혁신", t_cta:"지금 시작", t_why:"왜 우리를 선택하나요?",
-    t_security:"최고 수준 보안", t_security_text:"군사급 암호화와 다중 위험 관리로 자산을 보호합니다.",
-    t_profit:"일일 수익 (USDT)", t_profit_tip:"일일 수익 증가를 실시간 시뮬레이션.",
-    t_adv:"장점", t_adv_text:"저전력, 높은 안정성, 자동 최적화로 수익 극대화.",
-    t_clients:"고객 수익", c1:"지난달 $4,532 수익", c2:"지난달 $3,845 수익", c3:"지난달 $5,102 수익",
-    t_rights:"판권 소유."
-  },
-  "de":{
-    t_title:"Smartes Mining", t_subtitle:"Sicher • Profitabel • Innovativ", t_cta:"Jetzt starten", t_why:"Warum wir?",
-    t_security:"Höchste Sicherheit", t_security_text:"Verschlüsselung in Militärqualität und mehrschichtige Risikokontrolle zum Schutz Ihrer Vermögenswerte.",
-    t_profit:"Tagesgewinn (USDT)", t_profit_tip:"Echtzeit-Simulation des Ertragswachstums.",
-    t_adv:"Vorteile", t_adv_text:"Niedriger Energieverbrauch, hohe Stabilität, automatische Optimierung für maximale Rendite.",
-    t_clients:"Kundenerträge", c1:"Letzten Monat 4.532 $ verdient", c2:"Letzten Monat 3.845 $ verdient", c3:"Letzten Monat 5.102 $ verdient",
-    t_rights:"Alle Rechte vorbehalten."
-  },
-  "ru":{
-    t_title:"Умный майнинг", t_subtitle:"Безопасно • Прибыльно • Инновационно", t_cta:"Начать", t_why:"Почему выбирают нас?",
-    t_security:"Максимальная безопасность", t_security_text:"Шифрование военного класса и многоуровневый контроль рисков для защиты активов.",
-    t_profit:"Ежедневная прибыль (USDT)", t_profit_tip:"Моделирование роста дохода в реальном времени.",
-    t_adv:"Преимущества", t_adv_text:"Низкое энергопотребление, высокая стабильность и автооптимизация для максимальной доходности.",
-    t_clients:"Доходы клиентов", c1:"Доход за прошлый месяц $4,532", c2:"До прошлого месяца $3,845", c3:"До прошлого месяца $5,102",
-    t_rights:"Все права защищены."
-  },
-  "vi":{
-    t_title:"Khai thác Thông minh", t_subtitle:"An toàn • Sinh lợi • Sáng tạo", t_cta:"Bắt đầu", t_why:"Vì sao chọn chúng tôi?",
-    t_security:"Bảo mật hàng đầu", t_security_text:"Mã hóa cấp quân sự và kiểm soát rủi ro nhiều lớp để bảo vệ tài sản.",
-    t_profit:"Lợi nhuận hằng ngày (USDT)", t_profit_tip:"Mô phỏng tăng trưởng doanh thu theo thời gian thực.",
-    t_adv:"Ưu điểm", t_adv_text:"Tiêu thụ năng lượng thấp, ổn định cao, tối ưu tự động để tối đa hóa lợi nhuận.",
-    t_clients:"Thu nhập khách hàng", c1:"Kiếm $4,532 tháng trước", c2:"Kiếm $3,845 tháng trước", c3:"Kiếm $5,102 tháng trước",
-    t_rights:"Đã đăng ký bản quyền."
-  },
-  "pt-PT":{
-    t_title:"Mineração Inteligente", t_subtitle:"Segura • Lucrativa • Inovadora", t_cta:"Começar", t_why:"Porquê escolher-nos?",
-    t_security:"Segurança máxima", t_security_text:"Encriptação de nível militar e controlo de risco em várias camadas para proteger os seus ativos.",
-    t_profit:"Lucro diário (USDT)", t_profit_tip:"Simulação em tempo real do crescimento dos rendimentos.",
-    t_adv:"Vantagens", t_adv_text:"Baixo consumo, alta estabilidade e optimização automática para o máximo retorno.",
-    t_clients:"Ganhos dos clientes", c1:"Ganhou $4.532 no mês passado", c2:"Ganhou $3.845 no mês passado", c3:"Ganhou $5.102 no mês passado",
-    t_rights:"Todos os direitos reservados."
-  },
-  "pt-BR":{
-    t_title:"Mineração Inteligente", t_subtitle:"Segura • Lucrativa • Inovadora", t_cta:"Começar", t_why:"Por que nos escolher?",
-    t_security:"Segurança máxima", t_security_text:"Criptografia de nível militar e controle de riscos em múltiplas camadas para proteger seus ativos.",
-    t_profit:"Lucro diário (USDT)", t_profit_tip:"Simulação em tempo real do crescimento das receitas.",
-    t_adv:"Vantagens", t_adv_text:"Baixo consumo de energia, alta estabilidade e otimização automática para retorno máximo.",
-    t_clients:"Ganhos dos clientes", c1:"Ganhou $4.532 no mês passado", c2:"Ganhou $3.845 no mês passado", c3:"Ganhou $5.102 no mês passado",
-    t_rights:"Todos os direitos reservados."
-  },
-  "tr":{
-    t_title:"Akıllı Madencilik", t_subtitle:"Güvenli • Karlı • Yenilikçi", t_cta:"Başla", t_why:"Neden biz?",
-    t_security:"Üst düzey güvenlik", t_security_text:"Varlıklarınızı korumak için askeri seviye şifreleme ve çok katmanlı risk kontrolü.",
-    t_profit:"Günlük kazanç (USDT)", t_profit_tip:"Günlük gelir artışının gerçek zamanlı simülasyonu.",
-    t_adv:"Avantajlar", t_adv_text:"Düşük enerji, yüksek kararlılık, maksimum getiri için otomatik optimizasyon.",
-    t_clients:"Müşteri Kazançları", c1:"Geçen ay $4.532 kazandı", c2:"Geçen ay $3.845 kazandı", c3:"Geçen ay $5.102 kazandı",
-    t_rights:"Tüm hakları saklıdır."
-  },
-  "es":{
-    t_title:"Minería Inteligente", t_subtitle:"Segura • Rentable • Innovadora", t_cta:"Comenzar", t_why:"¿Por qué elegirnos?",
-    t_security:"Máxima seguridad", t_security_text:"Cifrado de nivel militar y control de riesgos multicapa para proteger sus activos.",
-    t_profit:"Ganancia diaria (USDT)", t_profit_tip:"Simulación en tiempo real del crecimiento de ingresos.",
-    t_adv:"Ventajas", t_adv_text:"Bajo consumo, alta estabilidad y optimización automática para el máximo retorno.",
-    t_clients:"Ingresos de clientes", c1:"Ganó $4,532 el mes pasado", c2:"Ganó $3,845 el mes pasado", c3:"Ganó $5,102 el mes pasado",
-    t_rights:"Todos los derechos reservados."
-  },
-  "fa":{
-    t_title:"استخراج هوشمند", t_subtitle:"امن • سودآور • نوآور", t_cta:"شروع کنید", t_why:"چرا ما؟",
-    t_security:"امنیت برتر", t_security_text:"رمزنگاری در سطح نظامی و کنترل ریسک چندلایه برای حفظ دارایی‌های شما.",
-    t_profit:"سود روزانه (USDT)", t_profit_tip:"شبیه‌سازی لحظه‌ای رشد درآمد روزانه.",
-    t_adv:"مزایا", t_adv_text:"مصرف انرژی پایین، پایداری بالا و بهینه‌سازی خودکار برای بیشینه بازده.",
-    t_clients:"درآمد مشتریان", c1:"$4,532 در ماه گذشته کسب کرد", c2:"$3,845 در ماه گذشته کسب کرد", c3:"$5,102 در ماه گذشته کسب کرد",
-    t_rights:"کلیه حقوق محفوظ است."
-  },
-  "ar":{
-    t_title:"التعدين الذكي", t_subtitle:"آمن • مربح • مبتكر", t_cta:"ابدأ الآن", t_why:"لماذا نحن؟",
-    t_security:"أعلى درجات الأمان", t_security_text:"تشفير بمستوى عسكري وتحكم متعدد الطبقات بالمخاطر لحماية أصولك.",
-    t_profit:"الربح اليومي (USDT)", t_profit_tip:"محاكاة فورية لنمو الدخل اليومي.",
-    t_adv:"المزايا", t_adv_text:"استهلاك منخفض للطاقة، ثبات عالٍ، وتحسين تلقائي لأقصى عائد.",
-    t_clients:"أرباح العملاء", c1:"ربح 4,532$ الشهر الماضي", c2:"ربح 3,845$ الشهر الماضي", c3:"ربح 5,102$ الشهر الماضي",
-    t_rights:"جميع الحقوق محفوظة."
-  },
-  "id":{
-    t_title:"Penambangan Cerdas", t_subtitle:"Aman • Menguntungkan • Inovatif", t_cta:"Mulai", t_why:"Mengapa memilih kami?",
-    t_security:"Keamanan terbaik", t_security_text:"Enkripsi kelas militer dan kontrol risiko berlapis untuk melindungi aset Anda.",
-    t_profit:"Keuntungan harian (USDT)", t_profit_tip:"Simulasi pertumbuhan pendapatan secara real-time.",
-    t_adv:"Keunggulan", t_adv_text:"Konsumsi energi rendah, stabilitas tinggi, dan optimasi otomatis untuk hasil maksimal.",
-    t_clients:"Pendapatan klien", c1:"Menghasilkan $4.532 bulan lalu", c2:"Menghasilkan $3.845 bulan lalu", c3:"Menghasilkan $5.102 bulan lalu",
-    t_rights:"Hak cipta dilindungi."
-  },
-  "el":{
-    t_title:"Έξυπνη Εξόρυξη", t_subtitle:"Ασφαλής • Κερδοφόρα • Καινοτόμος", t_cta:"Ξεκινήστε", t_why:"Γιατί να μας επιλέξετε;",
-    t_security:"Υψηλή ασφάλεια", t_security_text:"Κρυπτογράφηση στρατιωτικού επιπέδου και πολυεπίπεδος έλεγχος κινδύνου για την προστασία των περιουσιακών σας στοιχείων.",
-    t_profit:"Ημερήσιο κέρδος (USDT)", t_profit_tip:"Προσομοίωση σε πραγματικό χρόνο της αύξησης εσόδων.",
-    t_adv:"Πλεονεκτήματα", t_adv_text:"Χαμηλή κατανάλωση, υψηλή σταθερότητα και αυτόματη βελτιστοποίηση για μέγιστη απόδοση.",
-    t_clients:"Κέρδη πελατών", c1:"Κέρδισε $4.532 τον προηγούμενο μήνα", c2:"Κέρδισε $3.845 τον προηγούμενο μήνα", c3:"Κέρδισε $5.102 τον προηγούμενο μήνα",
-    t_rights:"Με την επιφύλαξη παντός δικαιώματος."
-  },
-  "ms":{
-    t_title:"Perlombongan Pintar", t_subtitle:"Selamat • Menguntungkan • Inovatif", t_cta:"Mula", t_why:"Mengapa pilih kami?",
-    t_security:"Keselamatan tertinggi", t_security_text:"Penyulitan setaraf tentera dan kawalan risiko berlapis untuk melindungi aset anda.",
-    t_profit:"Keuntungan harian (USDT)", t_profit_tip:"Simulasi pertumbuhan pendapatan masa nyata.",
-    t_adv:"Kelebihan", t_adv_text:"Penggunaan tenaga rendah, kestabilan tinggi dan pengoptimuman automatik untuk pulangan maksimum.",
-    t_clients:"Pendapatan pelanggan", c1:"Menjana $4,532 bulan lepas", c2:"Menjana $3,845 bulan lepas", c3:"Menjana $5,102 bulan lepas",
-    t_rights:"Hak cipta terpelihara."
-  },
-  "th":{
-    t_title:"เหมืองอัจฉริยะ", t_subtitle:"ปลอดภัย • ทำกำไร • นวัตกรรม", t_cta:"เริ่มต้น", t_why:"ทำไมต้องเลือกเรา?",
-    t_security:"ความปลอดภัยสูงสุด", t_security_text:"การเข้ารหัสระดับกองทัพและการควบคุมความเสี่ยงหลายชั้นเพื่อปกป้องทรัพย์สินของคุณ",
-    t_profit:"กำไรรายวัน (USDT)", t_profit_tip:"จำลองการเติบโตรายได้แบบเรียลไทม์",
-    t_adv:"ข้อได้เปรียบ", t_adv_text:"ใช้พลังงานต่ำ มีเสถียรภาพสูง และปรับให้เหมาะสมอัตโนมัติเพื่อผลตอบแทนสูงสุด",
-    t_clients:"รายได้ลูกค้า", c1:"ทำได้ $4,532 เมื่อเดือนที่แล้ว", c2:"ทำได้ $3,845 เมื่อเดือนที่แล้ว", c3:"ทำได้ $5,102 เมื่อเดือนที่แล้ว",
-    t_rights:"สงวนลิขสิทธิ์"
-  },
-  "la":{
-    t_title:"Exploratio Intellegens", t_subtitle:"Tuta • Lucrativa • Nova", t_cta:"Incipe", t_why:"Cur nos eligas?",
-    t_security:"Securitas summa", t_security_text:"Cryptographia militaris et periculorum moderatio multilateralis bona tua tuentur.",
-    t_profit:"Lucrum cotidianum (USDT)", t_profit_tip:"Simulatio incrementi redituum in tempore reali.",
-    t_adv:"Commoda", t_adv_text:"Parva vis consumpta, magna stabilitas, optimatione automatica ad summum reditum.",
-    t_clients:"Quaestus clientium", c1:"Mense superiore $4,532 meruit", c2:"Mense superiore $3,845 meruit", c3:"Mense superiore $5,102 meruit",
-    t_rights:"Omnia iura reservata."
-  },
-  "hi":{
-    t_title:"स्मार्ट माइनिंग", t_subtitle:"सुरक्षित • लाभदायक • नवीन", t_cta:"शुरू करें", t_why:"हमें क्यों चुनें?",
-    t_security:"उच्चतम सुरक्षा", t_security_text:"मिलिट्री-ग्रेड एन्क्रिप्शन और मल्टी-लेयर रिस्क कंट्रोल से आपकी परिसंपत्तियाँ सुरक्षित।",
-    t_profit:"दैनिक लाभ (USDT)", t_profit_tip:"दैनिक आय वृद्धि का रियल-टाइम सिमुलेशन।",
-    t_adv:"फायदे", t_adv_text:"कम ऊर्जा खपत, उच्च स्थिरता और अधिकतम रिटर्न के लिए स्वचालित अनुकूलन।",
-    t_clients:"ग्राहक आय", c1:"पिछले महीने $4,532 कमाए", c2:"पिछले महीने $3,845 कमाए", c3:"पिछले महीने $5,102 कमाए",
-    t_rights:"सर्वाधिकार सुरक्षित।"
-  },
-  "bn":{
-    t_title:"স্মার্ট মাইনিং", t_subtitle:"নিরাপদ • লাভজনক • উদ্ভাবনী", t_cta:"শুরু করুন", t_why:"কেন আমাদের বেছে নেবেন?",
-    t_security:"সর্বোচ্চ নিরাপত্তা", t_security_text:"সামরিক-মানের এনক্রিপশন ও বহুস্তর ঝুঁকি নিয়ন্ত্রণে আপনার সম্পদ সুরক্ষিত।",
-    t_profit:"দৈনিক লাভ (USDT)", t_profit_tip:"রিয়েল-টাইমে আয়ের বৃদ্ধির সিমুলেশন।",
-    t_adv:"সুবিধা", t_adv_text:"কম শক্তি খরচ, উচ্চ স্থিতিশীলতা ও সর্বোচ্চ রিটার্নের জন্য স্বয়ংক্রিয় অপ্টিমাইজেশন।",
-    t_clients:"গ্রাহকের আয়", c1:"গত মাসে $4,532 আয়", c2:"গত মাসে $3,845 আয়", c3:"গত মাসে $5,102 আয়",
-    t_rights:"সর্বস্বত্ব সংরক্ষিত।"
-  },
-  "ur":{
-    t_title:"اسمارٹ مائننگ", t_subtitle:"محفوظ • منافع بخش • جدید", t_cta:"شروع کریں", t_why:"ہمیں کیوں منتخب کریں؟",
-    t_security:"اعلیٰ درجے کی سیکیورٹی", t_security_text:"فوجی درجے کی خفیہ کاری اور کثیر سطحی رسک کنٹرول سے آپ کے اثاثوں کا تحفظ۔",
-    t_profit:"یومیہ منافع (USDT)", t_profit_tip:"روزانہ آمدنی کی نمو کی حقیقی وقت میں سمولیشن۔",
-    t_adv:"فوائد", t_adv_text:"کم توانائی خرچ، زیادہ استحکام، اور زیادہ سے زیادہ منافع کے لیے خودکار اصلاح۔",
-    t_clients:"کلائنٹ کی آمدنی", c1:"گزشتہ ماہ $4,532 کمائے", c2:"گزشتہ ماہ $3,845 کمائے", c3:"گزشتہ ماہ $5,102 کمائے",
-    t_rights:"جملہ حقوق محفوظ ہیں۔"
-  },
-  "tr-ALT":{} // placeholder (not used)
+particlesJS.load('particles-js','https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/demo/particles.json');
+
+function animateNumber(id, target){
+    let num=0;
+    const step = target/100;
+    const interval = setInterval(()=>{
+        num+=step;
+        if(num>=target){num=target;clearInterval(interval);}
+        document.getElementById(id).innerText=Math.floor(num);
+    },20);
+}
+animateNumber('profit-num',1500); // 可修改收益目标
+animateNumber('users-num',230);   // 可修改用户目标
+
+// 中文原文案
+const zhText = {
+    title: "智能挖矿",
+    subtitle: "安全高收益的智能挖矿平台",
+    cta: "立即开始",
+    safety: "安全保障",
+    safetyDesc: "多重加密保护您的资产",
+    profit: "收益优势",
+    profitDesc: "每日自动计算收益，透明可查",
+    advantage: "平台优势",
+    advantageDesc: "低风险，高效率，支持多币种",
+    profitLabel: "日收益（USDT）",
+    usersLabel: "活跃用户",
+    client1: "本月收益 1200 USDT",
+    client2: "本月收益 980 USDT"
 };
 
-// Supported codes mapping
-const SUPPORTED = [
-  "en","zh","zh-Hant","fr","it","ja","ko","de","ru","vi","pt-PT","pt-BR","tr","es","fa","ar","id","el","ms","th","la","hi","bn","ur"
-];
+// 检测浏览器语言
+const lang = navigator.language.slice(0,2);
 
-// Detect user language from navigator
-function detectLang(){
-  const prefs = navigator.languages || [navigator.language || navigator.userLanguage];
-  const norm = (code)=> code.toLowerCase().replace('_','-');
-  for(const p of prefs){
-    const c = norm(p);
-    if(L[c]) return c;
-    // map regional variants
-    if(c.startsWith('pt-br')) return 'pt-BR';
-    if(c.startsWith('pt')||c.startsWith('pt-pt')) return 'pt-PT';
-    if(c.startsWith('zh-tw')||c.startsWith('zh-hk')||c.includes('hant')) return 'zh-Hant';
-    if(c.startsWith('zh')) return 'zh';
-    const base = c.split('-')[0];
-    if(L[base]) return base;
-  }
-  return 'en';
-}
-
-// Fill language switcher
-function fillSwitcher(current){
-  const mapNames = {
-    "en":"English","zh":"简体中文","zh-Hant":"繁體中文","fr":"Français","it":"Italiano","ja":"日本語","ko":"한국어","de":"Deutsch","ru":"Русский","vi":"Tiếng Việt","pt-PT":"Português (PT)","pt-BR":"Português (BR)","tr":"Türkçe","es":"Español","fa":"فارسی","ar":"العربية","id":"Indonesia","el":"Ελληνικά","ms":"Melayu","th":"ไทย","la":"Latina","hi":"हिन्दी","bn":"বাংলা","ur":"اردو"
-  };
-  const sel = document.getElementById('langSwitcher');
-  sel.innerHTML = '';
-  SUPPORTED.forEach(code=>{
-    const opt = document.createElement('option');
-    opt.value = code; opt.textContent = mapNames[code]||code; if(code===current) opt.selected = true; sel.appendChild(opt);
-  });
-}
-
-function applyLang(code){
-  const pack = L[code] || L['en'];
-  const rtlCodes = ['ar','fa','ur'];
-  document.documentElement.lang = code;
-  document.documentElement.dir = rtlCodes.includes(code) ? 'rtl' : 'ltr';
-  for(const k in pack){
-    const el = document.getElementById(k);
-    if(el) el.textContent = pack[k];
-  }
-}
-
-// Profit counter animation
-function animateProfit(target=356){
-  const el = document.getElementById('profitNum');
-  let n = 0;
-  const tick = ()=>{
-    if(n < target){
-      n += Math.ceil((target - n)/10);
-      el.textContent = n.toLocaleString();
-      requestAnimationFrame(tick);
-    }else{
-      el.textContent = target.toLocaleString();
+// 异步翻译函数
+async function translateText(text,targetLang){
+    try{
+        const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`);
+        const data = await res.json();
+        return data[0].map(d=>d[0]).join('');
+    }catch(e){
+        return null; // 翻译失败返回null
     }
-  };
-  tick();
 }
 
-// Particles background
-(function particles(){
-  const canvas = document.getElementById('bg');
-  const ctx = canvas.getContext('2d');
-  let W,H; let P=[]; const N=120;
-  function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
-  addEventListener('resize', resize); resize();
-  function spawn(){P=[]; for(let i=0;i<N;i++){P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,r:Math.random()*2+1});}}
-  function step(){
-    ctx.clearRect(0,0,W,H);
-    for(const p of P){
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>H) p.vy*=-1;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(0,240,255,.9)'; ctx.fill();
+async function applyTranslation(){
+    // 如果浏览器是中文则直接显示
+    if(lang==='zh') return;
+
+    const elements = [
+        {id:'title',text:zhText.title},
+        {id:'subtitle',text:zhText.subtitle},
+        {id:'cta-btn',text:zhText.cta},
+        {id:'section-safety',text:zhText.safety},
+        {id:'section-safety-desc',text:zhText.safetyDesc},
+        {id:'section-profit',text:zhText.profit},
+        {id:'section-profit-desc',text:zhText.profitDesc},
+        {id:'section-advantage',text:zhText.advantage},
+        {id:'section-advantage-desc',text:zhText.advantageDesc},
+        {id:'profit-label',text:zhText.profitLabel},
+        {id:'users-label',text:zhText.usersLabel},
+        {id:'client1-profit',text:zhText.client1},
+        {id:'client2-profit',text:zhText.client2}
+    ];
+
+    for(let el of elements){
+        const translated = await translateText(el.text,lang);
+        document.getElementById(el.id).innerText = translated ? translated : el.text;
     }
-    // lines
-    for(let i=0;i<P.length;i++){
-      for(let j=i+1;j<P.length;j++){
-        const a=P[i], b=P[j];
-        const dx=a.x-b.x, dy=a.y-b.y; const d=dx*dx+dy*dy; if(d<110*110){
-          ctx.globalAlpha = 1 - (d/(110*110));
-          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.strokeStyle='rgba(0,255,174,.6)'; ctx.lineWidth=.6; ctx.stroke(); ctx.globalAlpha=1;
-        }
-      }
-    }
-    requestAnimationFrame(step);
-  }
-  spawn(); step();
-})();
+}
 
-// Init
-const detected = detectLang();
-fillSwitcher(detected);
-applyLang(detected);
-animateProfit(356);
-
-document.getElementById('langSwitcher').addEventListener('change', (e)=>{
-  const code = e.target.value; applyLang(code);
-});
-
-document.getElementById('year').textContent = new Date().getFullYear();
+applyTranslation();
 </script>
 </body>
 </html>
