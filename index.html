@@ -27,49 +27,48 @@
 <div id="particles-js"></div>
 
 <header>
-    <!-- LOGO图片路径，可修改 -->
-    <img src="https://github.com/wangwenbai/smart-miningluodiye/blob/main/token_mining.png" alt="Logo" style="margin-bottom:20px;">
+    <!-- LOGO图片已去掉 -->
     <!-- 主标题 -->
-    <h1 id="title">TOKEN MINING</h1>
+    <h1 id="title">智能挖矿</h1>
     <!-- 副标题 -->
-    <p id="subtitle">Safe and high-yield smart mining platform</p>
+    <p id="subtitle">安全高收益的智能挖矿平台</p>
     <!-- 按钮链接，可修改href -->
-    <a id="cta-link" href="https://lihi3.com/v3ir0">
-        <button id="cta-btn">Get started now</button>
+    <a id="cta-link" href="https://example.com">
+        <button id="cta-btn">立即开始</button>
     </a>
 </header>
 
 <section>
-    <h2 id="section-safety">Security</h2>
-    <p id="section-safety-desc">Multiple encryptions protect your assets</p>
+    <h2 id="section-safety">安全保障</h2>
+    <p id="section-safety-desc">多重加密保护您的资产</p>
 
-    <h2 id="section-profit">Profit Advantage</h2>
-    <p id="section-profit-desc">Daily automatic calculation of income, transparent and traceable</p>
+    <h2 id="section-profit">收益优势</h2>
+    <p id="section-profit-desc">每日自动计算收益，透明可查</p>
 
-    <h2 id="section-advantage">Platform Advantages</h2>
-    <p id="section-advantage-desc">Low risk, high efficiency, support for multiple currencies</p>
+    <h2 id="section-advantage">平台优势</h2>
+    <p id="section-advantage-desc">低风险，高效率，支持多币种</p>
 
     <div class="stats">
         <div class="stat">
             <h2 id="profit-num">0</h2>
-            <p id="profit-label">Daily income (USDT)</p>
+            <p id="profit-label">日收益（USDT）</p>
         </div>
         <div class="stat">
             <h2 id="users-num">0</h2>
-            <p id="users-label">Active users</p>
+            <p id="users-label">活跃用户</p>
         </div>
     </div>
 
     <div class="clients">
         <div class="client-card">
             <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="客户1">
-            <h3>Theodore</h3>
-            <p id="client1-profit">Today's income 4589 USDT</p>
+            <h3>William</h3>
+            <p id="client1-profit">本月收益 1200 USDT</p>
         </div>
         <div class="client-card">
             <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="客户2">
-            <h3>Annabelle</h3>
-            <p id="client2-profit">Today's income 2754 USDT</p>
+            <h3>Adelaide</h3>
+            <p id="client2-profit">本月收益 980 USDT</p>
         </div>
     </div>
 </section>
@@ -87,24 +86,24 @@ function animateNumber(id, target){
         document.getElementById(id).innerText=Math.floor(num);
     },20);
 }
-animateNumber('profit-num',156728543); // 可修改收益目标
-animateNumber('users-num',1685761);   // 可修改用户目标
+animateNumber('profit-num',185746528); // 可修改收益目标
+animateNumber('users-num',1857655);   // 可修改用户目标
 
 // 中文原文案
 const zhText = {
-    title: "智能挖矿",
-    subtitle: "安全高收益的智能挖矿平台",
-    cta: "立即开始",
-    safety: "安全保障",
-    safetyDesc: "多重加密保护您的资产",
-    profit: "收益优势",
-    profitDesc: "每日自动计算收益，透明可查",
-    advantage: "平台优势",
-    advantageDesc: "低风险，高效率，支持多币种",
-    profitLabel: "日收益（USDT）",
-    usersLabel: "活跃用户",
-    client1: "本月收益 1200 USDT",
-    client2: "本月收益 980 USDT"
+    title: "TOKEN MINING",
+    subtitle: "Safe and high-yield smart mining platform",
+    cta: "Get started now",
+    safety: "Security",
+    safetyDesc: "Multiple encryptions protect your assets",
+    profit: "Profit Advantage",
+    profitDesc: "Daily automatic calculation of income, transparent and traceable",
+    advantage: "Platform Advantages",
+    advantageDesc: "Low risk, high efficiency, support for multiple currencies",
+    profitLabel: "Daily income (USDT)",
+    usersLabel: "Active users",
+    client1: "Today's profit: 4839 USDT",
+    client2: "Today's profit: 3699 USDT"
 };
 
 // 检测浏览器语言
@@ -151,5 +150,3 @@ applyTranslation();
 </script>
 </body>
 </html>
-
-
