@@ -6,54 +6,49 @@
 <title>智能挖矿平台</title>
 <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
-    html, body { height:100%; background:#0b0c17; color:#fff; overflow-x:hidden; }
+    body, html { height:100%; overflow-x:hidden; background:#0b0c17; color:#fff; }
     a { text-decoration:none; color:inherit; }
 
-    /* 粒子背景全屏 */
+    /* 粒子背景 */
     #particles-js { position:fixed; width:100%; height:100%; z-index:-1; }
 
     /* Header */
     header {
-        text-align:center;
-        padding:120px 20px;
+        text-align:center; 
+        padding:100px 20px; 
         background: url('https://images.unsplash.com/photo-1623096193872-77305388f0e8?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat fixed;
         position: relative;
         overflow: hidden;
     }
     header::after {
         content:'';
-        position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7);
+        position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6);
     }
     header h1 { font-size:3rem; margin-bottom:20px; opacity:0; animation:fadeIn 1s ease forwards; position:relative; z-index:1; }
-    header p { font-size:1.2rem; margin-bottom:50px; opacity:0; animation:fadeIn 1.5s ease forwards; position:relative; z-index:1; }
+    header p { font-size:1.2rem; margin-bottom:40px; opacity:0; animation:fadeIn 1.5s ease forwards; position:relative; z-index:1; }
     header button {
-        padding:15px 35px; font-size:1.2rem; background:linear-gradient(90deg,#ff7e5f,#feb47b);
+        padding:15px 30px; font-size:1.2rem; background:linear-gradient(90deg,#ff7e5f,#feb47b);
         border:none; border-radius:30px; cursor:pointer; transition: all 0.3s; position:relative; z-index:1;
-        animation:buttonBounce 2s infinite;
     }
     header button:hover { transform: scale(1.1) rotate(-2deg); }
 
     /* Features */
-    .features { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; padding:80px 20px; }
-    .feature { background: rgba(255,255,255,0.05); padding:35px; border-radius:25px; width:260px; text-align:center; transition: transform 0.3s, opacity 0.5s; opacity:0; }
-    .feature.show { opacity:1; transform: translateY(0); }
+    .features { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; padding:60px 20px; }
+    .feature { background: rgba(255,255,255,0.05); padding:30px; border-radius:20px; width:250px; text-align:center; transition: transform 0.3s; }
+    .feature:hover { transform: translateY(-10px); }
     .feature h3 { margin-bottom:15px; }
     .feature p { font-size:0.95rem; line-height:1.4; }
 
-    /* 数字滚动曲线 */
-    .counter-section { text-align:center; padding:80px 20px; background:#0f101a; position:relative; overflow:hidden; }
+    /* 动态数字 */
+    .counter-section { text-align:center; padding:60px 20px; background:#0f101a; }
     .counter-section h2 { margin-bottom:20px; font-size:2.5rem; }
     .counter { font-size:3rem; color:#ff7e5f; }
 
-    /* 动画效果 */
+    /* 动画 */
     @keyframes fadeIn { to { opacity:1; } }
-    @keyframes buttonBounce { 0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);} }
 
-    /* 视差滚动 */
+    /* 视差效果 */
     .parallax { transform: translateY(0); transition: transform 0.1s; }
-
-    /* Canvas曲线 */
-    #curve { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -84,30 +79,30 @@
 <section class="counter-section">
     <h2>当前总算力</h2>
     <div id="counter" class="counter">0</div>
-    <canvas id="curve"></canvas>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
-    // 粒子3D增强
+    /* 粒子动画增强 */
     particlesJS("particles-js", {
         "particles": {
-            "number": { "value":120 },
+            "number": { "value":100 },
             "color": { "value":"#ffffff" },
             "shape": { "type":"circle" },
-            "opacity": { "value":0.6 },
+            "opacity": { "value":0.5 },
             "size": { "value":3 },
-            "line_linked": { "enable": true, "distance":150, "color":"#ffffff", "opacity":0.25, "width":1 },
+            "line_linked": { "enable": true, "distance":150, "color":"#ffffff", "opacity":0.2, "width":1 },
             "move": { "enable": true, "speed":3, "direction":"none", "out_mode":"out" }
         },
         "interactivity": { "events": { "onhover": { "enable": true, "mode":"repulse" } } }
     });
 
-    // 浏览器语言识别
+    /* 浏览器语言识别 */
     const userLang = navigator.language || navigator.userLanguage;
     const title = document.getElementById('title');
     const subtitle = document.getElementById('subtitle');
     const startBtn = document.getElementById('startBtn');
+
     if(userLang.startsWith('en')) {
         title.textContent = "Smart Mining Platform";
         subtitle.textContent = "Easily generate mining power and earn daily rewards";
@@ -123,66 +118,27 @@
         document.body.style.direction='rtl';
     }
 
-    // 数字动态增长
+    /* 数字动态增长 */
     const counter = document.getElementById('counter');
-    let count = 0;
-    const target = 12560;
-    const increment = target/200;
+    let count=0;
+    const target=12560;
+    const increment=target/200;
     function updateCounter() {
-        count += increment;
-        if(count < target){
+        count+=increment;
+        if(count<target){
             counter.textContent=Math.floor(count);
             requestAnimationFrame(updateCounter);
-        } else {
+        }else{
             counter.textContent=target;
         }
     }
     updateCounter();
 
-    // 视差滚动效果
+    /* 滚动视差效果 */
     const header = document.querySelector('header.parallax');
     window.addEventListener('scroll',()=>{
-        const offset = window.pageYOffset;
+        const offset=window.pageYOffset;
         header.style.transform=`translateY(${offset*0.3}px)`;
-        // 显示features模块
-        document.querySelectorAll('.feature').forEach((el)=>{
-            const top = el.getBoundingClientRect().top;
-            if(top < window.innerHeight-100) el.classList.add('show');
-        });
-    });
-
-    // Canvas曲线模拟收益动态滚动
-    const canvas = document.getElementById('curve');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = 200;
-    let points = [];
-    function addPoint(){
-        const lastY = points.length ? points[points.length-1].y : 150;
-        const y = lastY + (Math.random()*10-5);
-        points.push({x:points.length*5, y:y});
-        if(points.length*5>canvas.width) points.shift();
-    }
-    function drawCurve(){
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        ctx.beginPath();
-        ctx.moveTo(0,canvas.height);
-        points.forEach((p,i)=> ctx.lineTo(p.x, p.y));
-        ctx.lineTo(canvas.width, canvas.height);
-        ctx.fillStyle = 'rgba(255,126,95,0.3)';
-        ctx.fill();
-        requestAnimationFrame(drawCurve);
-    }
-    function animateCurve(){
-        addPoint();
-        requestAnimationFrame(animateCurve);
-    }
-    drawCurve();
-    animateCurve();
-
-    window.addEventListener('resize',()=>{
-        canvas.width = window.innerWidth;
-        canvas.height = 200;
     });
 </script>
 
