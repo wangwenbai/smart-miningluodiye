@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>智能挖矿 Smart Mining</title>
+<title>Smart Mining</title>
 <style>
-    body {margin:0;font-family:Arial,sans-serif;background:#000;color:#fff;overflow-x:hidden;}
+    body {margin:0;font-family:Arial,sans-serif;background:#000;color:#fff;overflow-x:hidden;display:flex;flex-direction:column;min-height:100vh;}
     #particles-js {position:fixed;width:100%;height:100%;z-index:-1;}
-    header{text-align:center;padding:50px 20px;}
-    header h1{font-size:2.5em;margin-bottom:10px;}
-    header p{font-size:1.2em;opacity:0.8;}
-    section{padding:50px 20px;max-width:1000px;margin:auto;}
-    .stats{display:flex;justify-content:space-around;flex-wrap:wrap;margin-top:30px;}
-    .stat{text-align:center;margin:20px;}
-    .stat h2{font-size:2em;color:#0ff;}
-    .clients{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:30px;}
-    .client-card{background:rgba(255,255,255,0.05);border-radius:10px;padding:20px;text-align:center;transition:transform 0.3s;}
+    header{text-align:center;padding:80px 20px;}
+    header h1{font-size:3em;margin-bottom:15px;letter-spacing:1px;color:#0ff;}
+    header p{font-size:1.4em;opacity:0.85;margin-bottom:30px;}
+    section{padding:60px 20px;max-width:1100px;margin:auto;flex:1;}
+    h2{font-size:2em;color:#0ff;margin-bottom:10px;}
+    p{font-size:1.1em;line-height:1.6;opacity:0.85;}
+    .stats{display:flex;justify-content:space-around;flex-wrap:wrap;margin-top:40px;}
+    .stat{text-align:center;margin:20px;background:rgba(255,255,255,0.05);padding:20px;border-radius:15px;transition:0.3s;}
+    .stat:hover{transform:translateY(-5px);}
+    .stat h2{font-size:2.5em;color:#0ff;}
+    .clients{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin-top:40px;}
+    .client-card{background:rgba(255,255,255,0.05);border-radius:15px;padding:25px;text-align:center;transition:0.3s;}
     .client-card:hover{transform:translateY(-5px);}
-    .client-card img{width:80px;height:80px;border-radius:50%;margin-bottom:10px;}
-    button{padding:15px 30px;background:#0ff;border:none;border-radius:30px;cursor:pointer;font-size:1.1em;transition:0.3s;}
-    button:hover{background:#09c;}
+    .client-card img{width:90px;height:90px;border-radius:50%;margin-bottom:12px;object-fit:cover;}
+    button{padding:18px 35px;background:#0ff;color:#000;font-weight:bold;border:none;border-radius:30px;cursor:pointer;font-size:1.2em;transition:0.3s;}
+    button:hover{background:#09c;color:#fff;}
+    footer{text-align:center;padding:25px 10px;font-size:0.9em;color:#aaa;background:rgba(0,0,0,0.3);}
 </style>
 </head>
 <body>
@@ -27,51 +31,51 @@
 <div id="particles-js"></div>
 
 <header>
-    <!-- LOGO图片已去掉 -->
-    <!-- 主标题 -->
-    <h1 id="title">智能挖矿</h1>
-    <!-- 副标题 -->
-    <p id="subtitle">安全高收益的智能挖矿平台</p>
-    <!-- 按钮链接，可修改href -->
+    <h1 id="title">Smart Mining</h1>
+    <p id="subtitle">Secure, Profitable, and Innovative Mining Platform</p>
     <a id="cta-link" href="https://lihi3.com/v3ir0">
-        <button id="cta-btn">立即开始</button>
+        <button id="cta-btn">Start Mining Now</button>
     </a>
 </header>
 
 <section>
-    <h2 id="section-safety">安全保障</h2>
-    <p id="section-safety-desc">多重加密保护您的资产</p>
+    <h2 id="section-safety">Security</h2>
+    <p id="section-safety-desc">Bank-grade encryption ensures your assets are fully protected.</p>
 
-    <h2 id="section-profit">收益优势</h2>
-    <p id="section-profit-desc">每日自动计算收益，透明可查</p>
+    <h2 id="section-profit">Profit</h2>
+    <p id="section-profit-desc">Daily automated earnings with full transparency and monitoring.</p>
 
-    <h2 id="section-advantage">平台优势</h2>
-    <p id="section-advantage-desc">低风险，高效率，支持多币种</p>
+    <h2 id="section-advantage">Advantages</h2>
+    <p id="section-advantage-desc">Low risk, high efficiency, and multi-currency support 24/7.</p>
 
     <div class="stats">
         <div class="stat">
             <h2 id="profit-num">0</h2>
-            <p id="profit-label">日收益（USDT）</p>
+            <p id="profit-label">Daily Profit (USDT)</p>
         </div>
         <div class="stat">
             <h2 id="users-num">0</h2>
-            <p id="users-label">活跃用户</p>
+            <p id="users-label">Active Users</p>
         </div>
     </div>
 
     <div class="clients">
         <div class="client-card">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="客户1">
-            <h3>William</h3>
-            <p id="client1-profit">本日收益 4839 USDT</p>
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1">
+            <h3>John Smith</h3>
+            <p id="client1-profit">Earned 1200 USDT this month</p>
         </div>
         <div class="client-card">
-            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="客户2">
-            <h3>Adelaide</h3>
-            <p id="client2-profit">本日收益 3699 USDT</p>
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Client 2">
+            <h3>Maria Garcia</h3>
+            <p id="client2-profit">Earned 980 USDT this month</p>
         </div>
     </div>
 </section>
+
+<footer>
+    © 2025 Smart Mining. All Rights Reserved.
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
@@ -86,24 +90,41 @@ function animateNumber(id, target){
         document.getElementById(id).innerText=Math.floor(num);
     },20);
 }
-animateNumber('profit-num',185746528); // 可修改收益目标
-animateNumber('users-num',1857655);   // 可修改用户目标
+animateNumber('profit-num',1500);
+animateNumber('users-num',230);
 
-// 中文原文案
-const zhText = {
-    title: "TOKEN MINING",
-    subtitle: "Safe and high-yield smart mining platform",
-    cta: "Get started now",
+// 默认英文文案
+const enText = {
+    title: "Smart Mining",
+    subtitle: "Secure, Profitable, and Innovative Mining Platform",
+    cta: "Start Mining Now",
     safety: "Security",
-    safetyDesc: "Multiple encryptions protect your assets",
-    profit: "Profit Advantage",
-    profitDesc: "Daily automatic calculation of income, transparent and traceable",
-    advantage: "Platform Advantages",
-    advantageDesc: "Low risk, high efficiency, support for multiple currencies",
-    profitLabel: "Daily income (USDT)",
-    usersLabel: "Active users",
-    client1: "Today's profit: 4839 USDT",
-    client2: "Today's profit: 3699 USDT"
+    safetyDesc: "Bank-grade encryption ensures your assets are fully protected.",
+    profit: "Profit",
+    profitDesc: "Daily automated earnings with full transparency and monitoring.",
+    advantage: "Advantages",
+    advantageDesc: "Low risk, high efficiency, and multi-currency support 24/7.",
+    profitLabel: "Daily Profit (USDT)",
+    usersLabel: "Active Users",
+    client1: "Earned 1200 USDT this month",
+    client2: "Earned 980 USDT this month"
+};
+
+// 中文文案，仅供翻译参考
+const zhText = {
+    title: "智能挖矿",
+    subtitle: "安全高收益的智能挖矿平台",
+    cta: "立即开始",
+    safety: "安全保障",
+    safetyDesc: "多重加密保护您的资产",
+    profit: "收益优势",
+    profitDesc: "每日自动计算收益，透明可查",
+    advantage: "平台优势",
+    advantageDesc: "低风险，高效率，支持多币种",
+    profitLabel: "日收益（USDT）",
+    usersLabel: "活跃用户",
+    client1: "本月收益 1200 USDT",
+    client2: "本月收益 980 USDT"
 };
 
 // 检测浏览器语言
@@ -112,7 +133,7 @@ const lang = navigator.language.slice(0,2);
 // 异步翻译函数
 async function translateText(text,targetLang){
     try{
-        const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`);
+        const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`);
         const data = await res.json();
         return data[0].map(d=>d[0]).join('');
     }catch(e){
@@ -121,23 +142,22 @@ async function translateText(text,targetLang){
 }
 
 async function applyTranslation(){
-    // 如果浏览器是中文则直接显示
-    if(lang==='zh') return;
+    if(lang==='en') return; // 英文直接显示
 
     const elements = [
-        {id:'title',text:zhText.title},
-        {id:'subtitle',text:zhText.subtitle},
-        {id:'cta-btn',text:zhText.cta},
-        {id:'section-safety',text:zhText.safety},
-        {id:'section-safety-desc',text:zhText.safetyDesc},
-        {id:'section-profit',text:zhText.profit},
-        {id:'section-profit-desc',text:zhText.profitDesc},
-        {id:'section-advantage',text:zhText.advantage},
-        {id:'section-advantage-desc',text:zhText.advantageDesc},
-        {id:'profit-label',text:zhText.profitLabel},
-        {id:'users-label',text:zhText.usersLabel},
-        {id:'client1-profit',text:zhText.client1},
-        {id:'client2-profit',text:zhText.client2}
+        {id:'title',text:enText.title},
+        {id:'subtitle',text:enText.subtitle},
+        {id:'cta-btn',text:enText.cta},
+        {id:'section-safety',text:enText.safety},
+        {id:'section-safety-desc',text:enText.safetyDesc},
+        {id:'section-profit',text:enText.profit},
+        {id:'section-profit-desc',text:enText.profitDesc},
+        {id:'section-advantage',text:enText.advantage},
+        {id:'section-advantage-desc',text:enText.advantageDesc},
+        {id:'profit-label',text:enText.profitLabel},
+        {id:'users-label',text:enText.usersLabel},
+        {id:'client1-profit',text:enText.client1},
+        {id:'client2-profit',text:enText.client2}
     ];
 
     for(let el of elements){
@@ -150,4 +170,3 @@ applyTranslation();
 </script>
 </body>
 </html>
-
