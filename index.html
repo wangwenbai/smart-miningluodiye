@@ -11,14 +11,10 @@ a{text-decoration:none;color:inherit;}
 
 /* Canvas全屏背景 */
 #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;display:block;}
+#curve{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
 
 /* Header */
-header{
-    text-align:center;
-    padding:120px 20px;
-    position: relative;
-    z-index:1;
-}
+header{text-align:center;padding:120px 20px;position: relative;z-index:1;}
 header h1{font-size:3rem;margin-bottom:20px;opacity:0;animation:fadeIn 1s forwards;}
 header p{font-size:1.2rem;margin-bottom:50px;opacity:0;animation:fadeIn 1.5s forwards;}
 header button{
@@ -31,9 +27,9 @@ header button:hover{transform:scale(1.1) rotate(-2deg);box-shadow:0 0 35px rgba(
 
 @keyframes fadeIn{to{opacity:1;}}
 @keyframes buttonGlow{
-    0%{box-shadow:0 0 10px rgba(255,126,95,0.4);}
-    50%{box-shadow:0 0 25px rgba(255,126,95,0.8);}
-    100%{box-shadow:0 0 10px rgba(255,126,95,0.4);}
+0%{box-shadow:0 0 10px rgba(255,126,95,0.4);}
+50%{box-shadow:0 0 25px rgba(255,126,95,0.8);}
+100%{box-shadow:0 0 10px rgba(255,126,95,0.4);}
 }
 
 /* Features */
@@ -47,25 +43,17 @@ header button:hover{transform:scale(1.1) rotate(-2deg);box-shadow:0 0 35px rgba(
 .feature p{font-size:0.95rem;line-height:1.4;}
 
 /* Counter Section */
-.counter-section{
-    position:relative;text-align:center;padding:100px 20px;background:rgba(15,16,26,0.8);overflow:hidden;
-}
+.counter-section{position:relative;text-align:center;padding:100px 20px;background:rgba(15,16,26,0.8);overflow:hidden;}
 .counter-section h2{margin-bottom:20px;font-size:2.5rem;}
 .counter{font-size:3rem;color:#ff7e5f;font-weight:bold;text-shadow:0 0 15px #ff7e5f;}
-#curve{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
 
 /* Responsive */
-@media(max-width:768px){
-    header h1{font-size:2.2rem;}
-    header p{font-size:1rem;}
-    .feature{width:90%;}
-}
+@media(max-width:768px){header h1{font-size:2.2rem;}header p{font-size:1rem;}.feature{width:90%;}}
 </style>
 </head>
 <body>
 
 <canvas id="bg-canvas"></canvas>
-
 <header>
     <h1 id="title"></h1>
     <p id="subtitle"></p>
@@ -73,18 +61,9 @@ header button:hover{transform:scale(1.1) rotate(-2deg);box-shadow:0 0 35px rgba(
 </header>
 
 <section class="features">
-    <div class="feature">
-        <h3 id="feature1-title"></h3>
-        <p id="feature1-desc"></p>
-    </div>
-    <div class="feature">
-        <h3 id="feature2-title"></h3>
-        <p id="feature2-desc"></p>
-    </div>
-    <div class="feature">
-        <h3 id="feature3-title"></h3>
-        <p id="feature3-desc"></p>
-    </div>
+    <div class="feature"><h3 id="feature1-title"></h3><p id="feature1-desc"></p></div>
+    <div class="feature"><h3 id="feature2-title"></h3><p id="feature2-desc"></p></div>
+    <div class="feature"><h3 id="feature3-title"></h3><p id="feature3-desc"></p></div>
 </section>
 
 <section class="counter-section">
@@ -94,70 +73,62 @@ header button:hover{transform:scale(1.1) rotate(-2deg);box-shadow:0 0 35px rgba(
 </section>
 
 <script>
-/* ------------------ 多语言文字 ------------------ */
+// ---------------- 多语言 ----------------
 const LANGS = {
-    zh: { title: "智能挖矿平台", subtitle: "通过我们的平台轻松产生算力，获得每日收益", startBtn: "立即开始",
-        features: [
-            {title:"高收益", desc:"每天都能获得稳定收益，让资产增长更轻松。"},
-            {title:"安全保障", desc:"资金托管安全可靠，放心使用，无需担心资产问题。"},
-            {title:"简单易用", desc:"无需复杂操作，一键开启智能挖矿。"}],
-        counter: "当前总算力" },
-    en: { title: "Smart Mining Platform", subtitle: "Easily generate mining power and earn daily rewards", startBtn: "Get Started",
-        features: [
-            {title:"High Yield", desc:"Earn stable daily rewards and grow your assets easily."},
-            {title:"Secure", desc:"Funds are safely managed and reliable."},
-            {title:"Easy to Use", desc:"Start mining with just one click."}],
-        counter: "Current Total Hashrate" },
-    fr: { title: "Plateforme de Minage Intelligent", subtitle: "Générez facilement de la puissance minière et recevez des récompenses quotidiennes", startBtn: "Commencer",
-        features: [
-            {title:"Haut Rendement", desc:"Recevez des récompenses stables chaque jour et faites croître vos actifs facilement."},
-            {title:"Sécurité", desc:"Les fonds sont gérés de manière sûre et fiable."},
-            {title:"Facile à Utiliser", desc:"Commencez le minage en un clic."}],
-        counter: "Puissance totale actuelle" },
-    ar: { title: "منصة التعدين الذكي", subtitle: "قم بتوليد قوة التعدين بسهولة واحصل على أرباح يومية", startBtn: "ابدأ الآن",
-        features: [
-            {title:"عائد مرتفع", desc:"احصل على أرباح يومية مستقرة وزد أصولك بسهولة."},
-            {title:"أمان", desc:"الأموال مُدارة بأمان وموثوقة."},
-            {title:"سهل الاستخدام", desc:"ابدأ التعدين بنقرة واحدة."}],
-        counter: "إجمالي قوة التعدين الحالية" }
+    zh: { title:"智能挖矿平台", subtitle:"通过我们的平台轻松产生算力，获得每日收益", startBtn:"立即开始",
+        features:[{title:"高收益",desc:"每天都能获得稳定收益，让资产增长更轻松。"},
+                  {title:"安全保障",desc:"资金托管安全可靠，放心使用，无需担心资产问题。"},
+                  {title:"简单易用",desc:"无需复杂操作，一键开启智能挖矿。"}],
+        counter:"当前总算力"},
+    en: { title:"Smart Mining Platform", subtitle:"Easily generate mining power and earn daily rewards", startBtn:"Get Started",
+        features:[{title:"High Yield",desc:"Earn stable daily rewards and grow your assets easily."},
+                  {title:"Secure",desc:"Funds are safely managed and reliable."},
+                  {title:"Easy to Use",desc:"Start mining with just one click."}],
+        counter:"Current Total Hashrate"},
+    fr: { title:"Plateforme de Minage Intelligent", subtitle:"Générez facilement de la puissance minière et recevez des récompenses quotidiennes", startBtn:"Commencer",
+        features:[{title:"Haut Rendement",desc:"Recevez des récompenses stables chaque jour et faites croître vos actifs facilement."},
+                  {title:"Sécurité",desc:"Les fonds sont gérés de manière sûre et fiable."},
+                  {title:"Facile à Utiliser",desc:"Commencez le minage en un clic."}],
+        counter:"Puissance totale actuelle"},
+    ar: { title:"منصة التعدين الذكي", subtitle:"قم بتوليد قوة التعدين بسهولة واحصل على أرباح يومية", startBtn:"ابدأ الآن",
+        features:[{title:"عائد مرتفع",desc:"احصل على أرباح يومية مستقرة وزد أصولك بسهولة."},
+                  {title:"أمان",desc:"الأموال مُدارة بأمان وموثوقة."},
+                  {title:"سهل الاستخدام",desc:"ابدأ التعدين بنقرة واحدة."}],
+        counter:"إجمالي قوة التعدين الحالية"}
 };
-
-const userLang = navigator.language.slice(0,2);
-const lang = LANGS[userLang] || LANGS['zh'];
-
-// 替换文字
-document.getElementById('title').textContent = lang.title;
-document.getElementById('subtitle').textContent = lang.subtitle;
-document.getElementById('startBtn').textContent = lang.startBtn;
-document.getElementById('feature1-title').textContent = lang.features[0].title;
-document.getElementById('feature1-desc').textContent = lang.features[0].desc;
-document.getElementById('feature2-title').textContent = lang.features[1].title;
-document.getElementById('feature2-desc').textContent = lang.features[1].desc;
-document.getElementById('feature3-title').textContent = lang.features[2].title;
-document.getElementById('feature3-desc').textContent = lang.features[2].desc;
-document.getElementById('counter-title').textContent = lang.counter;
-
+const userLang=navigator.language.slice(0,2);
+const lang=LANGS[userLang]||LANGS['zh'];
+document.getElementById('title').textContent=lang.title;
+document.getElementById('subtitle').textContent=lang.subtitle;
+document.getElementById('startBtn').textContent=lang.startBtn;
+document.getElementById('feature1-title').textContent=lang.features[0].title;
+document.getElementById('feature1-desc').textContent=lang.features[0].desc;
+document.getElementById('feature2-title').textContent=lang.features[1].title;
+document.getElementById('feature2-desc').textContent=lang.features[1].desc;
+document.getElementById('feature3-title').textContent=lang.features[2].title;
+document.getElementById('feature3-desc').textContent=lang.features[2].desc;
+document.getElementById('counter-title').textContent=lang.counter;
 if(userLang==='ar'){document.body.style.direction='rtl';}
 
-/* ------------------ 数字动态增长 ------------------ */
-const counter = document.getElementById('counter');
-let count = 0;
-const target = 12560;
-const increment = target/200;
+// ---------------- 动态数字 ----------------
+const counter=document.getElementById('counter');
+let count=0;
+const target=12560;
+const increment=target/200;
 function updateCounter(){count+=increment;if(count<target){counter.textContent=Math.floor(count);requestAnimationFrame(updateCounter);}else{counter.textContent=target;}}
 updateCounter();
 
-/* ------------------ Features渐显 ------------------ */
+// ---------------- Features渐显 ----------------
 window.addEventListener('scroll',()=>{
     document.querySelectorAll('.feature').forEach(el=>{
-        if(el.getBoundingClientRect().top < window.innerHeight-100) el.classList.add('show');
+        if(el.getBoundingClientRect().top<window.innerHeight-100) el.classList.add('show');
     });
 });
 
-/* ------------------ 曲线收益动画 ------------------ */
-const curveCanvas = document.getElementById('curve');
-const ctx = curveCanvas.getContext('2d');
-function resizeCurve(){curveCanvas.width = window.innerWidth; curveCanvas.height = 200;}
+// ---------------- 曲线动画 ----------------
+const curveCanvas=document.getElementById('curve');
+const ctx=curveCanvas.getContext('2d');
+function resizeCurve(){curveCanvas.width=window.innerWidth;curveCanvas.height=200;}
 resizeCurve();
 window.addEventListener('resize',resizeCurve);
 let points=[];
@@ -166,57 +137,43 @@ function drawCurve(){ctx.clearRect(0,0,curveCanvas.width,curveCanvas.height);ctx
 function animateCurve(){addPoint();requestAnimationFrame(animateCurve);}
 drawCurve();animateCurve();
 
-/* ------------------ 全屏3D粒子 + 鼠标交互 ------------------ */
+// ---------------- 粒子动画 ----------------
 const canvas = document.getElementById('bg-canvas');
-const c = canvas.getContext('2d');
+const c2 = canvas.getContext('2d');
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
 window.addEventListener('resize',()=>{width=canvas.width=window.innerWidth;height=canvas.height=window.innerHeight;});
 
 const particles = [];
 const particleCount = 150;
-for(let i=0;i<particleCount;i++){
-    particles.push({x:Math.random()*width,y:Math.random()*height,z:Math.random()*width,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5,vz:(Math.random()-0.5)*0.5});
-}
+for(let i=0;i<particleCount;i++){particles.push({x:Math.random()*width,y:Math.random()*height,z:Math.random()*width,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5,vz:(Math.random()-0.5)*0.5});}
+const mouse={x:width/2,y:height/2};
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+window.addEventListener('touchmove',e=>{mouse.x=e.touches[0].clientX;mouse.y=e.touches[0].clientY;});
 
-// 鼠标位置
-const mouse = {x:width/2, y:height/2};
-window.addEventListener('mousemove',e=>{mouse.x=e.clientX; mouse.y=e.clientY;});
-window.addEventListener('touchmove',e=>{mouse.x=e.touches[0].clientX; mouse.y=e.touches[0].clientY;});
-
-// 粒子绘制
 function drawParticles(){
-    c.clearRect(0,0,width,height);
+    c2.clearRect(0,0,width,height);
     particles.forEach(p=>{
-        // 更新位置
-        p.x += p.vx; p.y += p.vy; p.z += p.vz;
-        if(p.x<0||p.x>width) p.vx*=-1;
-        if(p.y<0||p.y>height) p.vy*=-1;
-
-        // 鼠标吸引力
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const dist = Math.sqrt(dx*dx+dy*dy);
-        const force = Math.min(100/dist,0.05);
-        p.vx += dx*force*0.01;
-        p.vy += dy*force*0.01;
-
-        // 透视缩放
-        const scale = 300/(300+p.z);
-        const x2d = (p.x-width/2)*scale + width/2;
-        const y2d = (p.y-height/2)*scale + height/2;
-        const radius = scale*2;
-
-        // 绘制粒子
-        c.beginPath(); 
-        c.arc(x2d,y2d,radius,0,Math.PI*2); 
-        c.fillStyle='rgba(255,255,255,'+(0.7*scale)+')'; 
-        c.fill();
+        p.x+=p.vx;p.y+=p.vy;p.z+=p.vz;
+        if(p.x<0||p.x>width)p.vx*=-1;
+        if(p.y<0||p.y>height)p.vy*=-1;
+        const dx=mouse.x-p.x;
+        const dy=mouse.y-p.y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        const force=Math.min(100/dist,0.05);
+        p.vx+=dx*force*0.01;p.vy+=dy*force*0.01;
+        const scale=300/(300+p.z);
+        const x2d=(p.x-width/2)*scale+width/2;
+        const y2d=(p.y-height/2)*scale+height/2;
+        const radius=scale*2;
+        c2.beginPath();
+        c2.arc(x2d,y2d,radius,0,Math.PI*2);
+        c2.fillStyle='rgba(255,255,255,'+(0.7*scale)+')';
+        c2.fill();
     });
     requestAnimationFrame(drawParticles);
 }
 drawParticles();
 </script>
-
 </body>
 </html>
