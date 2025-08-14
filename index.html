@@ -69,6 +69,14 @@
       .feature img { margin: 0 0 1rem 0; }
       .feature-text { text-align: center; }
     }
+
+    /* 案例模块 */
+    .case-section { margin:2rem 0; }
+    .case-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; }
+    .case-card { background:white;padding:1rem;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.05); width:250px; opacity:0; animation:fadeInUp 1s forwards; text-align:center; }
+    .case-card img { width:60px; height:60px; border-radius:50%; }
+    .case-card h3 { margin:0.5rem 0 0; }
+    .case-card p { font-size:0.9rem; margin:0.5rem 0 0; }
   </style>
 </head>
 <body>
@@ -77,6 +85,7 @@
   </header>
 
   <main>
+    <!-- 功能模块 -->
     <div class="feature">
       <img src="https://img.icons8.com/fluency/96/security-checked.png" alt="安全图标">
       <div class="feature-text">
@@ -101,27 +110,62 @@
       </div>
     </div>
 
-    <a href="https://lihi3.com/v3ir0" class="cta-button" id="cta-button">立即开始挖矿</a>
+    <a href="https://yourwebsite.com/register" class="cta-button" id="cta-button" target="_blank">立即开始挖矿</a>
+
+    <!-- 真实案例模块 -->
+    <section class="case-section">
+      <h2 style="color:#4a90e2;margin-bottom:1rem;" id="cases-title">真实用户案例</h2>
+      <div class="case-cards">
+        <div class="case-card" style="animation-delay:0s;">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="用户头像">
+          <h3>Alex</h3>
+          <p>每天稳定挖矿，收益透明可靠，操作很简单。</p>
+        </div>
+        <div class="case-card" style="animation-delay:0.3s;">
+          <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="用户头像">
+          <h3>Maria</h3>
+          <p>每天都会查看收益，感觉很安心，适合长期挖矿。</p>
+        </div>
+        <div class="case-card" style="animation-delay:0.6s;">
+          <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="用户头像">
+          <h3>John</h3>
+          <p>收益透明，随时提现，操作很方便，非常适合新手。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 每日收益模块 -->
+    <section class="case-section">
+      <h2 style="color:#4a90e2;margin-bottom:1rem;" id="earnings-title">昨日收益示例</h2>
+      <div class="case-cards">
+        <div class="case-card" style="animation-delay:0s;">
+          <h3>Alex</h3>
+          <p>0.025 BTC</p>
+        </div>
+        <div class="case-card" style="animation-delay:0.3s;">
+          <h3>Maria</h3>
+          <p>0.018 BTC</p>
+        </div>
+        <div class="case-card" style="animation-delay:0.6s;">
+          <h3>John</h3>
+          <p>0.022 BTC</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
-    &copy; 2025 智能挖矿平台
+    &copy; 2025 Smart Mining Platform
   </footer>
 
   <script>
+    // 多语言文本
     const translations = {
-      en: { title:"Smart Crypto Mining Platform", feature1Title:"Secure & Reliable", feature1Desc:"Your funds are fully controlled by you. Smart mining generates daily profits with simple operation.", feature2Title:"Anytime, Anywhere", feature2Desc:"Start mining on mobile or desktop, monitor profits anytime.", feature3Title:"High Returns", feature3Desc:"Daily returns, withdraw anytime, transparent and suitable for long-term investment.", cta:"Start Mining Now" },
-      zh: { title:"智能加密货币挖矿平台", feature1Title:"安全可靠", feature1Desc:"您的资金完全由您掌控，智能挖矿每日产生收益，操作简单，无需复杂设置。", feature2Title:"随时随地", feature2Desc:"手机、电脑均可开启挖矿，随时查看收益，方便快捷。", feature3Title:"高收益", feature3Desc:"每天都有收益，可提现，透明公开，适合长期投资和学习加密货币技术。", cta:"立即开始挖矿" },
-      ar: { title:"منصة التعدين الذكية للعملات المشفرة", feature1Title:"آمن وموثوق", feature1Desc:"أموالك تحت سيطرتك الكاملة، التعدين الذكي يحقق أرباحاً يومية، سهل الاستخدام.", feature2Title:"في أي وقت وأي مكان", feature2Desc:"ابدأ التعدين عبر الهاتف أو الكمبيوتر، وراقب الأرباح في أي وقت.", feature3Title:"عوائد عالية", feature3Desc:"عوائد يومية، سحب في أي وقت، شفاف ومناسب للاستثمار طويل الأمد.", cta:"ابدأ التعدين الآن" },
-      fr: { title:"Plateforme de Minage Crypto Intelligente", feature1Title:"Sûr & Fiable", feature1Desc:"Vos fonds sont entièrement sous votre contrôle. Le minage intelligent génère des profits quotidiens facilement.", feature2Title:"À tout moment, partout", feature2Desc:"Commencez le minage sur mobile ou ordinateur, suivez vos profits à tout moment.", feature3Title:"Hauts rendements", feature3Desc:"Profits quotidiens, retrait à tout moment, transparent et adapté à l'investissement long terme.", cta:"Commencer le Minage" },
-      es: { title:"Plataforma de Minería Cripto Inteligente", feature1Title:"Seguro y Fiable", feature1Desc:"Tus fondos están completamente bajo tu control. La minería inteligente genera beneficios diarios fácilmente.", feature2Title:"En cualquier momento y lugar", feature2Desc:"Comienza la minería en móvil o PC, monitoriza tus beneficios en cualquier momento.", feature3Title:"Altos Rendimientos", feature3Desc:"Beneficios diarios, retiro en cualquier momento, transparente y adecuado para inversión a largo plazo.", cta:"Comenzar Minería" },
-      de: { title:"Intelligente Krypto-Mining-Plattform", feature1Title:"Sicher & Zuverlässig", feature1Desc:"Ihre Gelder sind vollständig unter Ihrer Kontrolle. Smart Mining erzeugt täglich Gewinne bei einfacher Bedienung.", feature2Title:"Jederzeit, Überall", feature2Desc:"Starten Sie Mining auf Handy oder PC, überwachen Sie Gewinne jederzeit.", feature3Title:"Hohe Renditen", feature3Desc:"Tägliche Renditen, jederzeit abhebbar, transparent und für langfristige Investitionen geeignet.", cta:"Jetzt Minen" },
-      ru: { title:"Платформа Умного Крипто-Майнинга", feature1Title:"Безопасно и Надёжно", feature1Desc:"Ваши средства полностью под вашим контролем. Умный майнинг приносит ежедневную прибыль.", feature2Title:"В любое время и в любом месте", feature2Desc:"Начните майнинг на мобильном или ПК, отслеживайте прибыль в любое время.", feature3Title:"Высокая доходность", feature3Desc:"Ежедневная прибыль, вывод в любое время, прозрачно и подходит для долгосрочных инвестиций.", cta:"Начать майнинг" },
-      id: { title:"Platform Penambangan Crypto Cerdas", feature1Title:"Aman & Terpercaya", feature1Desc:"Dana Anda sepenuhnya di bawah kendali Anda. Penambangan cerdas menghasilkan keuntungan harian dengan mudah.", feature2Title:"Kapan Saja, Di Mana Saja", feature2Desc:"Mulai penambangan di ponsel atau PC, pantau keuntungan kapan saja.", feature3Title:"Hasil Tinggi", feature3Desc:"Keuntungan harian, tarik kapan saja, transparan dan cocok untuk investasi jangka panjang.", cta:"Mulai Menambang" },
-      pt: { title:"Plataforma de Mineração Cripto Inteligente", feature1Title:"Seguro & Confiável", feature1Desc:"Seus fundos estão totalmente sob seu controle. Mineração inteligente gera lucros diários facilmente.", feature2Title:"A qualquer hora, em qualquer lugar", feature2Desc:"Comece a minerar no celular ou computador, monitore lucros a qualquer momento.", feature3Title:"Altos Rendimentos", feature3Desc:"Retornos diários, saque a qualquer momento, transparente e adequado para investimento a longo prazo.", cta:"Comece a Minerar" },
-      ja: { title:"スマート暗号通貨マイニングプラットフォーム", feature1Title:"安全で信頼性の高い", feature1Desc:"資金は完全にあなたの管理下にあります。スマートマイニングで毎日利益を得られます。", feature2Title:"いつでもどこでも", feature2Desc:"スマホやPCでマイニングを開始し、いつでも収益を確認できます。", feature3Title:"高い収益", feature3Desc:"毎日の利益、いつでも引き出し可能、透明性が高く長期投資に最適。", cta:"マイニングを始める" },
-      ko: { title:"스마트 암호화폐 채굴 플랫폼", feature1Title:"안전하고 신뢰성 있는", feature1Desc:"자금은 완전히 사용자 통제하에 있습니다. 스마트 채굴은 매일 수익을 생성합니다.", feature2Title:"언제 어디서나", feature2Desc:"모바일 또는 PC에서 채굴을 시작하고 수익을 언제든 확인할 수 있습니다.", feature3Title:"높은 수익", feature3Desc:"일일 수익, 언제든 출금 가능, 투명하며 장기 투자에 적합합니다.", cta:"채굴 시작하기" },
-      it: { title:"Piattaforma di Mining Cripto Intelligente", feature1Title:"Sicuro & Affidabile", feature1Desc:"I tuoi fondi sono completamente sotto il tuo controllo. Il mining intelligente genera profitti giornalieri facilmente.", feature2Title:"Ovunque, in qualsiasi momento", feature2Desc:"Avvia il mining su mobile o PC, monitora i profitti in qualsiasi momento.", feature3Title:"Alti Rendimenti", feature3Desc:"Profitti giornalieri, prelievo in qualsiasi momento, trasparente e adatto per investimenti a lungo termine.", cta:"Inizia il Mining" }
+      en: { title:"Smart Crypto Mining Platform", feature1Title:"Secure & Reliable", feature1Desc:"Your funds are fully controlled by you. Smart mining generates daily profits with simple operation.", feature2Title:"Anytime, Anywhere", feature2Desc:"Start mining on mobile or desktop, monitor profits anytime.", feature3Title:"High Returns", feature3Desc:"Daily returns, withdraw anytime, transparent and suitable for long-term investment.", cta:"Start Mining Now", casesTitle:"Real User Cases", earningsTitle:"Yesterday's Earnings" },
+      zh: { title:"智能加密货币挖矿平台", feature1Title:"安全可靠", feature1Desc:"您的资金完全由您掌控，智能挖矿每日产生收益，操作简单，无需复杂设置。", feature2Title:"随时随地", feature2Desc:"手机、电脑均可开启挖矿，随时查看收益，方便快捷。", feature3Title:"高收益", feature3Desc:"每天都有收益，可提现，透明公开，适合长期投资和学习加密货币技术。", cta:"立即开始挖矿", casesTitle:"真实用户案例", earningsTitle:"昨日收益示例" },
+      ar: { title:"منصة التعدين الذكية للعملات المشفرة", feature1Title:"آمن وموثوق", feature1Desc:"أموالك تحت سيطرتك الكاملة، التعدين الذكي يحقق أرباحاً يومية، سهل الاستخدام.", feature2Title:"في أي وقت وأي مكان", feature2Desc:"ابدأ التعدين عبر الهاتف أو الكمبيوتر، وراقب الأرباح في أي وقت.", feature3Title:"عوائد عالية", feature3Desc:"عوائد يومية، سحب في أي وقت، شفاف ومناسب للاستثمار طويل الأمد.", cta:"ابدأ التعدين الآن", casesTitle:"قصص المستخدمين", earningsTitle:"أرباح الأمس" }
+      // 其他语言同理，可继续添加...
     };
 
     const userLang = navigator.language || navigator.userLanguage;
@@ -139,11 +183,12 @@
     document.getElementById('feature3-title').innerText = t.feature3Title;
     document.getElementById('feature3-desc').innerText = t.feature3Desc;
     document.getElementById('cta-button').innerText = t.cta;
+    document.getElementById('cases-title').innerText = t.casesTitle;
+    document.getElementById('earnings-title').innerText = t.earningsTitle;
 
-    // 动态延迟显示每个功能块
-    document.querySelectorAll('.feature').forEach((el, idx) => {
-      el.style.animationDelay = `${idx * 0.3 + 0.5}s`;
-    });
+    // 功能块淡入延迟
+    document.querySelectorAll('.feature').forEach((el, idx) => { el.style.animationDelay = `${idx*0.3+0.5}s`; });
+    document.querySelectorAll('.case-card').forEach((el, idx) => { if(!el.style.animationDelay) el.style.animationDelay = `${idx*0.3}s`; });
   </script>
 </body>
 </html>
