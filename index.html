@@ -8,35 +8,46 @@
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
     html,body{height:100%;background:#0b0c17;color:#fff;overflow-x:hidden;}
     a{text-decoration:none;color:inherit;}
+
+    /* 粒子背景 */
     #particles-js{position:fixed;width:100%;height:100%;z-index:-1;}
-    
+
     /* Header */
     header{
         text-align:center;
         padding:120px 20px;
-        background: url('https://images.unsplash.com/photo-1623096193872-77305388f0e8?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat fixed;
+        background:url('https://images.unsplash.com/photo-1623096193872-77305388f0e8?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat fixed;
         position: relative;
         overflow: hidden;
     }
     header::after{
         content:'';
         position:absolute;top:0;left:0;width:100%;height:100%;
-        background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7));
+        background:rgba(0,0,0,0.65);
     }
-    header h1{font-size:3rem;margin-bottom:20px;opacity:0;animation:fadeIn 1s ease forwards;position:relative;z-index:1;}
-    header p{font-size:1.2rem;margin-bottom:50px;opacity:0;animation:fadeIn 1.5s ease forwards;position:relative;z-index:1;}
+    header h1{
+        font-size:3rem;margin-bottom:20px;opacity:0;
+        animation:fadeIn 1s ease forwards;position:relative;z-index:1;
+    }
+    header p{
+        font-size:1.2rem;margin-bottom:50px;opacity:0;
+        animation:fadeIn 1.5s ease forwards;position:relative;z-index:1;
+    }
     header button{
         padding:15px 35px;font-size:1.2rem;
         background:linear-gradient(90deg,#ff7e5f,#feb47b);
-        border:none;border-radius:35px;
-        cursor:pointer;
-        position:relative; z-index:1;
-        animation:buttonGlow 2s infinite alternate;
-        color:#fff; font-weight:bold;
+        border:none;border-radius:35px;cursor:pointer;
+        position:relative;z-index:1;color:#fff;font-weight:bold;
         box-shadow:0 0 20px rgba(255,126,95,0.6);
+        transition:transform 0.3s, box-shadow 0.3s;
+        animation:buttonGlow 2s infinite alternate;
         overflow:hidden;
     }
-    header button:hover{transform: scale(1.1) rotate(-2deg);}
+    header button:hover{
+        transform:scale(1.1) rotate(-2deg);
+        box-shadow:0 0 35px rgba(255,126,95,0.9);
+    }
+
     @keyframes fadeIn{to{opacity:1;}}
     @keyframes buttonGlow{
         0%{box-shadow:0 0 10px rgba(255,126,95,0.4);}
@@ -45,7 +56,9 @@
     }
 
     /* Features */
-    .features{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;padding:80px 20px;}
+    .features{
+        display:flex;flex-wrap:wrap;justify-content:center;gap:25px;padding:80px 20px;
+    }
     .feature{
         background: rgba(255,255,255,0.05); padding:35px; border-radius:25px; width:260px;
         text-align:center; transition: transform 0.5s, opacity 0.7s; opacity:0; transform:translateY(30px);
@@ -54,14 +67,27 @@
     .feature h3{margin-bottom:15px;}
     .feature p{font-size:0.95rem; line-height:1.4;}
 
-    /* Counter */
-    .counter-section{position:relative;text-align:center;padding:100px 20px;background:#0f101a;overflow:hidden;}
+    /* Counter Section */
+    .counter-section{
+        position:relative;text-align:center;padding:100px 20px;background:#0f101a;overflow:hidden;
+    }
     .counter-section h2{margin-bottom:20px;font-size:2.5rem;}
-    .counter{font-size:3rem;color:#ff7e5f;font-weight:bold;text-shadow:0 0 10px #ff7e5f;}
-    #curve{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+    .counter{
+        font-size:3rem;color:#ff7e5f;font-weight:bold;text-shadow:0 0 15px #ff7e5f;
+    }
+    #curve{
+        position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;
+    }
 
     /* Parallax */
     .parallax{transform:translateY(0);transition:transform 0.1s;}
+
+    /* Responsive */
+    @media(max-width:768px){
+        header h1{font-size:2.2rem;}
+        header p{font-size:1rem;}
+        .feature{width:90%;}
+    }
 </style>
 </head>
 <body>
@@ -97,21 +123,21 @@
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
-    // 粒子增强3D
+    // 粒子效果
     particlesJS("particles-js",{
         "particles":{
-            "number":{"value":150},
+            "number":{"value":120},
             "color":{"value":"#ffffff"},
             "shape":{"type":"circle"},
             "opacity":{"value":0.7},
             "size":{"value":3},
-            "line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.3,"width":1},
-            "move":{"enable":true,"speed":4,"direction":"none","out_mode":"out"}
+            "line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.25,"width":1},
+            "move":{"enable":true,"speed":3,"direction":"none","out_mode":"out"}
         },
         "interactivity":{"events":{"onhover":{"enable":true,"mode":"repulse"}}}
     });
 
-    // 浏览器语言
+    // 语言识别
     const userLang=navigator.language||navigator.userLanguage;
     const titleEl=document.getElementById('title');
     const subtitleEl=document.getElementById('subtitle');
@@ -136,41 +162,46 @@
     let count=0;
     const target=12560;
     const increment=target/200;
-    function updateCounter(){count+=increment; if(count<target){counter.textContent=Math.floor(count);requestAnimationFrame(updateCounter);}else{counter.textContent=target;}}
+    function updateCounter(){count+=increment;if(count<target){counter.textContent=Math.floor(count);requestAnimationFrame(updateCounter);}else{counter.textContent=target;}}
     updateCounter();
 
-    // 视差滚动
+    // 滚动视差和Features渐显
     const header=document.querySelector('header.parallax');
     window.addEventListener('scroll',()=>{
         const offset=window.pageYOffset;
-        header.style.transform=`translateY(${offset*0.3}px)`;
-        document.querySelectorAll('.feature').forEach((el)=>{
+        header.style.transform=`translateY(${offset*0.25}px)`;
+        document.querySelectorAll('.feature').forEach(el=>{
             const top=el.getBoundingClientRect().top;
             if(top<window.innerHeight-100) el.classList.add('show');
         });
     });
 
-    // 曲线模拟收益
+    // 曲线收益动画
     const canvas=document.getElementById('curve');
     const ctx=canvas.getContext('2d');
-    canvas.width=window.innerWidth;
-    canvas.height=200;
+    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=200;}
+    resizeCanvas();
+    window.addEventListener('resize',resizeCanvas);
+
     let points=[];
-    function addPoint(){const lastY=points.length?points[points.length-1].y:150;const y=lastY+(Math.random()*10-5);points.push({x:points.length*5,y:y});if(points.length*5>canvas.width) points.shift();}
+    function addPoint(){
+        const lastY=points.length?points[points.length-1].y:150;
+        const y=lastY + (Math.random()*10-5);
+        points.push({x:points.length*5,y:y});
+        if(points.length*5>canvas.width) points.shift();
+    }
     function drawCurve(){
         ctx.clearRect(0,0,canvas.width,canvas.height);
         ctx.beginPath();
         ctx.moveTo(0,canvas.height);
-        points.forEach((p,i)=>{
-            ctx.lineTo(p.x,p.y);
-        });
+        points.forEach(p=>ctx.lineTo(p.x,p.y));
         ctx.lineTo(canvas.width,canvas.height);
-        let gradient=ctx.createLinearGradient(0,0,canvas.width,0);
+        const gradient=ctx.createLinearGradient(0,0,canvas.width,0);
         gradient.addColorStop(0,'rgba(255,126,95,0.6)');
         gradient.addColorStop(0.5,'rgba(255,200,100,0.4)');
         gradient.addColorStop(1,'rgba(255,126,95,0.6)');
         ctx.fillStyle=gradient;
-        ctx.shadowBlur=20;
+        ctx.shadowBlur=15;
         ctx.shadowColor='rgba(255,126,95,0.5)';
         ctx.fill();
         requestAnimationFrame(drawCurve);
@@ -178,7 +209,6 @@
     function animateCurve(){addPoint();requestAnimationFrame(animateCurve);}
     drawCurve();
     animateCurve();
-    window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=200;});
 </script>
 </body>
 </html>
