@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>智能挖矿</title>
+<title>Smart Mining</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <style>
@@ -18,7 +18,7 @@
   .features{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;}
   .feature-card{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border-radius:20px;padding:30px;flex:1 1 250px;text-align:center;transition:0.3s;}
   .feature-card:hover{transform:translateY(-10px);box-shadow:0 0 20px #00f0ff;}
-  .feature-card img{width:80px;margin-bottom:20px;}
+  .feature-card img{width:80px;height:80px;border-radius:50%;margin-bottom:20px;object-fit:cover;}
   footer{text-align:center;padding:40px 20px;color:#666;}
   #particles-js{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;}
 </style>
@@ -27,52 +27,55 @@
 
 <header>
   <div id="particles-js"></div>
-  <h1 id="title">智能挖矿</h1>
-  <p id="subtitle">每天轻松产生收益</p>
-  <a href="#" class="btn" id="startBtn">立即开始</a>
+  <h1 id="title">Smart Mining</h1>
+  <p id="subtitle">Earn daily with ease</p>
+  <a href="#" class="btn" id="startBtn">Get Started</a>
 </header>
 
 <section class="section">
-  <h2 class="animate__animated animate__fadeInUp" id="featuresTitle">功能优势</h2>
+  <h2 class="animate__animated animate__fadeInUp" id="featuresTitle">Features</h2>
   <div class="features">
     <div class="feature-card animate__animated animate__fadeInUp animate__delay-1s">
-      <img src="https://via.placeholder.com/80" alt="feature1">
-      <h3 id="feature1Title">高效算力</h3>
-      <p id="feature1Desc">通过平台产生智能算力，收益稳定可靠。</p>
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="High Efficiency">
+      <h3 id="feature1Title">High Efficiency</h3>
+      <p id="feature1Desc">Generate smart mining power via our platform with stable profits.</p>
     </div>
     <div class="feature-card animate__animated animate__fadeInUp animate__delay-2s">
-      <img src="https://via.placeholder.com/80" alt="feature2">
-      <h3 id="feature2Title">自动收益</h3>
-      <p id="feature2Desc">每天自动计算收益，无需人工操作。</p>
+      <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Automatic Earnings">
+      <h3 id="feature2Title">Automatic Earnings</h3>
+      <p id="feature2Desc">Daily earnings are calculated automatically without manual effort.</p>
     </div>
     <div class="feature-card animate__animated animate__fadeInUp animate__delay-3s">
-      <img src="https://via.placeholder.com/80" alt="feature3">
-      <h3 id="feature3Title">安全可靠</h3>
-      <p id="feature3Desc">采用先进加密技术，保证资金安全。</p>
+      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Secure & Reliable">
+      <h3 id="feature3Title">Secure & Reliable</h3>
+      <p id="feature3Desc">Advanced encryption ensures your funds are safe.</p>
     </div>
   </div>
 </section>
 
 <section class="section" id="earnings">
-  <h2 class="animate__animated animate__fadeInUp">用户收益反馈</h2>
+  <h2 class="animate__animated animate__fadeInUp">User Earnings Feedback</h2>
   <div class="features">
     <div class="feature-card animate__animated animate__fadeInUp animate__delay-1s">
-      <h3>用户A</h3>
-      <p>今日收益: <span class="earning" data-value="12.34">0</span> USDT</p>
+      <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="John Doe">
+      <h3>John Doe</h3>
+      <p>Today's Earnings: <span class="earning" data-value="12.34">0</span> USDT</p>
     </div>
     <div class="feature-card animate__animated animate__fadeInUp animate__delay-2s">
-      <h3>用户B</h3>
-      <p>今日收益: <span class="earning" data-value="8.76">0</span> USDT</p>
+      <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Emily Smith">
+      <h3>Emily Smith</h3>
+      <p>Today's Earnings: <span class="earning" data-value="8.76">0</span> USDT</p>
     </div>
     <div class="feature-card animate__animated animate__fadeInUp animate__delay-3s">
-      <h3>用户C</h3>
-      <p>今日收益: <span class="earning" data-value="15.21">0</span> USDT</p>
+      <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Michael Johnson">
+      <h3>Michael Johnson</h3>
+      <p>Today's Earnings: <span class="earning" data-value="15.21">0</span> USDT</p>
     </div>
   </div>
 </section>
 
 <footer>
-  &copy; 2025 智能挖矿平台. 保留所有权利.
+  &copy; 2025 Smart Mining Platform. All rights reserved.
 </footer>
 
 <!-- Particles.js -->
@@ -80,7 +83,7 @@
 <script>
 particlesJS("particles-js", {
   "particles": {
-    "number": {"value":80,"density":{"enable":true,"value_area":800}},
+    "number": {"value":100,"density":{"enable":true,"value_area":800}},
     "color":{"value":"#00f0ff"},
     "shape":{"type":"circle"},
     "opacity":{"value":0.5,"random":true},
@@ -93,7 +96,7 @@ particlesJS("particles-js", {
 });
 </script>
 
-<!-- 动态数字增长 -->
+<!-- Animate Earnings Numbers -->
 <script>
 function animateNumber(element, duration=2000){
   const target = parseFloat(element.dataset.value);
@@ -115,7 +118,7 @@ window.addEventListener('load', ()=>{
 });
 </script>
 
-<!-- 自动识别语言 -->
+<!-- Language Auto Detection -->
 <script>
 const lang = navigator.language || navigator.userLanguage;
 if(lang.startsWith('zh')){
@@ -140,17 +143,6 @@ if(lang.startsWith('zh')){
   document.getElementById('feature2Desc').innerText = 'يتم حساب الأرباح يومياً تلقائياً دون تدخل منك.';
   document.getElementById('feature3Title').innerText = 'آمن وموثوق';
   document.getElementById('feature3Desc').innerText = 'يتم استخدام تقنيات التشفير المتقدمة لضمان أمان الأموال.';
-} else {
-  document.getElementById('title').innerText = 'Smart Mining';
-  document.getElementById('subtitle').innerText = 'Earn daily with ease';
-  document.getElementById('startBtn').innerText = 'Get Started';
-  document.getElementById('featuresTitle').innerText = 'Features';
-  document.getElementById('feature1Title').innerText = 'High Efficiency';
-  document.getElementById('feature1Desc').innerText = 'Generate smart mining power via our platform with stable profits.';
-  document.getElementById('feature2Title').innerText = 'Automatic Earnings';
-  document.getElementById('feature2Desc').innerText = 'Daily earnings are calculated automatically without manual effort.';
-  document.getElementById('feature3Title').innerText = 'Secure & Reliable';
-  document.getElementById('feature3Desc').innerText = 'Advanced encryption ensures your funds are safe.';
 }
 </script>
 
