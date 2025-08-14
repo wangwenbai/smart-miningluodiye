@@ -53,6 +53,24 @@
   </div>
 </section>
 
+<section class="section" id="earnings">
+  <h2 class="animate__animated animate__fadeInUp">用户收益反馈</h2>
+  <div class="features">
+    <div class="feature-card animate__animated animate__fadeInUp animate__delay-1s">
+      <h3>用户A</h3>
+      <p>今日收益: <span class="earning" data-value="12.34">0</span> USDT</p>
+    </div>
+    <div class="feature-card animate__animated animate__fadeInUp animate__delay-2s">
+      <h3>用户B</h3>
+      <p>今日收益: <span class="earning" data-value="8.76">0</span> USDT</p>
+    </div>
+    <div class="feature-card animate__animated animate__fadeInUp animate__delay-3s">
+      <h3>用户C</h3>
+      <p>今日收益: <span class="earning" data-value="15.21">0</span> USDT</p>
+    </div>
+  </div>
+</section>
+
 <footer>
   &copy; 2025 智能挖矿平台. 保留所有权利.
 </footer>
@@ -62,16 +80,38 @@
 <script>
 particlesJS("particles-js", {
   "particles": {
-    "number": {"value": 80,"density":{"enable":true,"value_area":800}},
-    "color": {"value":"#00f0ff"},
-    "shape": {"type":"circle"},
-    "opacity": {"value":0.5,"random":true},
-    "size": {"value":3,"random":true},
+    "number": {"value":80,"density":{"enable":true,"value_area":800}},
+    "color":{"value":"#00f0ff"},
+    "shape":{"type":"circle"},
+    "opacity":{"value":0.5,"random":true},
+    "size":{"value":3,"random":true},
     "line_linked":{"enable":true,"distance":150,"color":"#00f0ff","opacity":0.4,"width":1},
     "move":{"enable":true,"speed":2,"direction":"none","random":false,"straight":false,"out_mode":"out"}
   },
   "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":200,"line_linked":{"opacity":1}},"push":{"particles_nb":4}}},
   "retina_detect":true
+});
+</script>
+
+<!-- 动态数字增长 -->
+<script>
+function animateNumber(element, duration=2000){
+  const target = parseFloat(element.dataset.value);
+  let start = 0;
+  const increment = target / (duration / 16);
+  function update(){
+    start += increment;
+    if(start < target){
+      element.innerText = start.toFixed(2);
+      requestAnimationFrame(update);
+    }else{
+      element.innerText = target.toFixed(2);
+    }
+  }
+  update();
+}
+window.addEventListener('load', ()=>{
+  document.querySelectorAll('.earning').forEach(el=>animateNumber(el));
 });
 </script>
 
