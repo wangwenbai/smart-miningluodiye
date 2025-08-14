@@ -1,133 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mining Power Test - Secure Access">
-    <title>Mining Power Test</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 500px;
-            margin: 80px auto;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        h1 {
-            font-size: 26px;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 16px;
-            color: #ddd;
-        }
-        .progress {
-            width: 100%;
-            background-color: #444;
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 20px 0;
-        }
-        .progress-bar {
-            height: 20px;
-            width: 0%;
-            background-color: #00c853;
-            text-align: center;
-            line-height: 20px;
-            color: #fff;
-            font-size: 14px;
-            transition: width 0.3s;
-        }
-        a.button {
-            display: none;
-            padding: 15px 25px;
-            font-size: 18px;
-            color: #fff;
-            background: #ff9800;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background 0.3s;
-        }
-        a.button:hover {
-            background: #e68a00;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智能挖矿平台</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background: #4a90e2;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+    .feature {
+      background: white;
+      margin: 1rem 0;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .feature h2 {
+      margin-top: 0;
+      color: #4a90e2;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.75rem 2rem;
+      background: #4a90e2;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .cta-button:hover {
+      background: #357ABD;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #888;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1 id="title">Detecting Mining Power...</h1>
-        <p id="desc">Please wait while we check your device performance.</p>
-
-        <div class="progress">
-            <div class="progress-bar" id="progress-bar">0%</div>
-        </div>
-
-        <a id="main-btn" class="button" href="https://tokenmining.vip" target="_blank" rel="noopener noreferrer">
-            Go to Main Site
-        </a>
+  <header>
+    <h1 id="title">智能加密货币挖矿平台</h1>
+  </header>
+  <main>
+    <div class="feature">
+      <h2 id="feature1-title">安全可靠</h2>
+      <p id="feature1-desc">您的资金完全由您掌控，智能挖矿每日产生收益，操作简单，无需复杂设置。</p>
     </div>
+    <div class="feature">
+      <h2 id="feature2-title">随时随地</h2>
+      <p id="feature2-desc">手机、电脑均可开启挖矿，随时查看收益，方便快捷。</p>
+    </div>
+    <div class="feature">
+      <h2 id="feature3-title">高收益</h2>
+      <p id="feature3-desc">每天都有收益，可提现，透明公开，适合长期投资和学习加密货币技术。</p>
+    </div>
+    <a href="#" class="cta-button" id="cta-button">立即开始挖矿</a>
+  </main>
+  <footer>
+    &copy; 2025 智能挖矿平台
+  </footer>
 
-    <script>
-        // 多语言文案
-        const texts = {
-            en: {
-                title: "Detecting Mining Power...",
-                desc: "Please wait while we check your device performance.",
-                btn: "Go to Main Site"
-            },
-            zh: {
-                title: "正在检测算力...",
-                desc: "请稍候，我们正在检测您的设备性能。",
-                btn: "进入主站"
-            },
-            fr: {
-                title: "Détection de la puissance de minage...",
-                desc: "Veuillez patienter pendant que nous vérifions les performances de votre appareil.",
-                btn: "Aller au site principal"
-            },
-            es: {
-                title: "Detectando potencia de minería...",
-                desc: "Por favor, espere mientras verificamos el rendimiento de su dispositivo.",
-                btn: "Ir al sitio principal"
-            }
-        };
+  <script>
+    // 多语言文本
+    const translations = {
+      en: {
+        title: "Smart Crypto Mining Platform",
+        feature1Title: "Secure & Reliable",
+        feature1Desc: "Your funds are fully controlled by you. Smart mining generates daily profits with simple operation.",
+        feature2Title: "Anytime, Anywhere",
+        feature2Desc: "Start mining on mobile or desktop, monitor profits anytime.",
+        feature3Title: "High Returns",
+        feature3Desc: "Daily returns, withdraw anytime, transparent and suitable for long-term investment.",
+        cta: "Start Mining Now"
+      },
+      zh: {
+        title: "智能加密货币挖矿平台",
+        feature1Title: "安全可靠",
+        feature1Desc: "您的资金完全由您掌控，智能挖矿每日产生收益，操作简单，无需复杂设置。",
+        feature2Title: "随时随地",
+        feature2Desc: "手机、电脑均可开启挖矿，随时查看收益，方便快捷。",
+        feature3Title: "高收益",
+        feature3Desc: "每天都有收益，可提现，透明公开，适合长期投资和学习加密货币技术。",
+        cta: "立即开始挖矿"
+      },
+      ar: {
+        title: "منصة التعدين الذكية للعملات المشفرة",
+        feature1Title: "آمن وموثوق",
+        feature1Desc: "أموالك تحت سيطرتك الكاملة، التعدين الذكي يحقق أرباحاً يومية، سهل الاستخدام.",
+        feature2Title: "في أي وقت وأي مكان",
+        feature2Desc: "ابدأ التعدين عبر الهاتف أو الكمبيوتر، وراقب الأرباح في أي وقت.",
+        feature3Title: "عوائد عالية",
+        feature3Desc: "عوائد يومية، سحب في أي وقت، شفاف ومناسب للاستثمار طويل الأمد.",
+        cta: "ابدأ التعدين الآن"
+      }
+    };
 
-        // 检测语言
-        const userLang = navigator.language || navigator.userLanguage;
-        const langKey = userLang.startsWith("zh") ? "zh" :
-                        userLang.startsWith("fr") ? "fr" :
-                        userLang.startsWith("es") ? "es" : "en";
+    // 获取用户浏览器语言
+    const userLang = navigator.language || navigator.userLanguage;
+    const lang = userLang.startsWith('ar') ? 'ar' : userLang.startsWith('zh') ? 'zh' : 'en';
+    const t = translations[lang];
 
-        document.getElementById("title").innerText = texts[langKey].title;
-        document.getElementById("desc").innerText = texts[langKey].desc;
-        document.getElementById("main-btn").innerText = texts[langKey].btn;
-
-        // 模拟进度条
-        let progress = 0;
-        const progressBar = document.getElementById("progress-bar");
-        const mainBtn = document.getElementById("main-btn");
-
-        const interval = setInterval(() => {
-            progress += Math.floor(Math.random() * 8) + 5;
-            if (progress > 100) progress = 100;
-            progressBar.style.width = progress + "%";
-            progressBar.innerText = progress + "%";
-
-            if (progress >= 100) {
-                clearInterval(interval);
-                mainBtn.style.display = "inline-block";
-            }
-        }, 500);
-    </script>
-</body>
-</html>
-
+    // 替换文本
+    document.getElementById('title').innerText = t.title;
+    document.getElementById('feature1-title').innerText = t.feature1Title;
+    document.getElementById('feature1-desc').innerText = t.feature1Desc;
+    document.getElementById('feature2-title').innerText = t.feature2Titl
