@@ -1,194 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>智能挖矿平台</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 0;
-      background: #f5f7fa; color: #333;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能挖矿平台</title>
+<style>
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  scroll-behavior: smooth;
+  background: #0d1117;
+  color: #fff;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
 
-    header {
-      background: #4a90e2; color: white; text-align: center; padding: 3rem 1rem;
-      animation: fadeInDown 1s ease forwards;
-    }
-    header h1 { margin: 0; font-size: 2.2rem; }
+/* Header */
+header {
+  position: fixed; width: 100%; background: #111827cc; backdrop-filter: blur(10px);
+  display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 1000;
+}
+header nav a { margin: 0 1rem; font-weight: bold; color: #fff; }
 
-    main {
-      max-width: 900px; margin: 2rem auto; padding: 0 1rem; text-align: center;
-    }
+/* 粒子背景覆盖层 */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0; left: 0;
+  z-index: 0;
+}
 
-    .feature {
-      background: white; margin: 1.5rem 0; padding: 2rem 1rem; border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05); display: flex; align-items: center;
-      flex-wrap: wrap; opacity: 0; transform: translateY(30px);
-      animation: fadeInUp 1s ease forwards;
-    }
+/* Banner */
+.banner {
+  position: relative;
+  height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; padding: 0 1rem;
+  z-index: 1;
+}
+.banner h1 { font-size: 3rem; margin-bottom: 1rem; animation: fadeInDown 1s ease forwards; }
+.banner p { font-size: 1.2rem; margin-bottom: 2rem; }
+.button-animate {
+  background: linear-gradient(45deg, #6e8efb, #a777e3);
+  color: #fff; border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer;
+  font-weight: bold; transition: all 0.3s ease;
+}
+.button-animate:hover { transform: scale(1.05) translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.5); }
 
-    .feature img {
-      width: 80px; height: 80px; margin-right: 1.5rem;
-      flex-shrink: 0;
-    }
+/* 通用模块样式 */
+.section { padding: 6rem 2rem; max-width: 1200px; margin: auto; position: relative; z-index: 1; }
+.section h2 { text-align: center; margin-bottom: 3rem; font-size: 2.2rem; color: #fff; }
+.cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+.card {
+  background: #1c1f2a; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  padding: 2rem; flex: 1 1 250px; max-width: 300px; text-align: center;
+  transition: all 0.3s ease;
+}
+.card img { width: 80px; margin-bottom: 1rem; }
+.card h3 { margin-bottom: 1rem; color: #6e8efb; }
+.card p { color: #ccc; font-size: 0.95rem; }
 
-    .feature-text { text-align: left; flex: 1; }
+/* 数字动画 */
+.counter { font-size: 2rem; font-weight: bold; color: #6e8efb; }
 
-    .feature h2 { margin-top: 0; color: #4a90e2; font-size: 1.5rem; }
-    .feature p { margin: 0.5rem 0 0; line-height: 1.5; }
+/* 步骤模块 */
+.steps { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 2rem; }
+.step { background: #1c1f2a; border-radius: 15px; padding: 2rem; flex: 1 1 220px; text-align: center;
+box-shadow: 0 5px 15px rgba(0,0,0,0.5); transition: transform 0.3s; }
+.step:hover { transform: translateY(-10px); }
+.step img { width: 60px; margin-bottom: 1rem; }
+.step h4 { margin-bottom: 0.8rem; }
+.step p { color: #ccc; font-size: 0.9rem; }
 
-    .cta-button {
-      display: inline-block; margin-top: 2rem; padding: 0.8rem 2.5rem; 
-      background: #4a90e2; color: white; border-radius: 8px; text-decoration: none;
-      font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    .cta-button:hover {
-      background: #357ABD;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      transform: translateY(-2px);
-    }
+/* Footer */
+footer { background: #111827; color: #fff; text-align: center; padding: 2rem; margin-top: 3rem; }
 
-    footer { text-align: center; padding: 1rem; color: #888; font-size: 0.9rem; }
+/* 动画关键帧 */
+@keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-20px);} 100% { opacity: 1; transform: translateY(0);} }
 
-    /* 动画效果 */
-    @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 600px) {
-      .feature { flex-direction: column; text-align: center; }
-      .feature img { margin: 0 0 1rem 0; }
-      .feature-text { text-align: center; }
-    }
-
-    /* 案例模块 */
-    .case-section { margin:2rem 0; }
-    .case-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; }
-    .case-card { background:white;padding:1rem;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.05); width:250px; opacity:0; animation:fadeInUp 1s forwards; text-align:center; }
-    .case-card img { width:60px; height:60px; border-radius:50%; }
-    .case-card h3 { margin:0.5rem 0 0; }
-    .case-card p { font-size:0.9rem; margin:0.5rem 0 0; }
-  </style>
+@media(max-width:768px){
+  .cards, .steps { flex-direction: column; align-items: center; }
+  header { flex-direction: column; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1 id="title">智能加密货币挖矿平台</h1>
-  </header>
 
-  <main>
-    <!-- 功能模块 -->
-    <div class="feature">
-      <img src="https://img.icons8.com/fluency/96/security-checked.png" alt="安全图标">
-      <div class="feature-text">
-        <h2 id="feature1-title">安全可靠</h2>
-        <p id="feature1-desc">您的资金完全由您掌控，智能挖矿每日产生收益，操作简单，无需复杂设置。</p>
-      </div>
+<header>
+  <div class="logo">智能挖矿</div>
+  <nav>
+    <a href="#about">关于我们</a>
+    <a href="#profit">收益展示</a>
+    <a href="#steps">操作步骤</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<!-- 粒子背景 -->
+<div id="particles-js"></div>
+
+<section class="banner">
+  <h1 id="banner-title">智能挖矿，轻松收益</h1>
+  <p id="banner-desc">每天获取加密货币收益，只需简单操作</p>
+  <button id="start-btn" class="button-animate">立即开始</button>
+</section>
+
+<section class="section" id="about">
+  <h2 id="about-title">关于智能挖矿</h2>
+  <div class="cards">
+    <div class="card fade-in">
+      <img src="images/security.png" alt="安全">
+      <h3 id="card1-title">资产安全</h3>
+      <p id="card1-desc">采用顶级安全技术，保障您的资金安全无忧。</p>
     </div>
-
-    <div class="feature">
-      <img src="https://img.icons8.com/fluency/96/clock.png" alt="随时随地图标">
-      <div class="feature-text">
-        <h2 id="feature2-title">随时随地</h2>
-        <p id="feature2-desc">手机、电脑均可开启挖矿，随时查看收益，方便快捷。</p>
-      </div>
+    <div class="card fade-in">
+      <img src="images/profit.png" alt="收益">
+      <h3 id="card2-title">高收益</h3>
+      <p id="card2-desc">智能算法挖矿，每天可获取稳定收益。</p>
     </div>
-
-    <div class="feature">
-      <img src="https://img.icons8.com/fluency/96/money-bag.png" alt="高收益图标">
-      <div class="feature-text">
-        <h2 id="feature3-title">高收益</h2>
-        <p id="feature3-desc">每天都有收益，可提现，透明公开，适合长期投资和学习加密货币技术。</p>
-      </div>
+    <div class="card fade-in">
+      <img src="images/easy.png" alt="简单">
+      <h3 id="card3-title">操作简单</h3>
+      <p id="card3-desc">无需专业知识，一键开始挖矿。</p>
     </div>
+  </div>
+</section>
 
-    <a href="https://yourwebsite.com/register" class="cta-button" id="cta-button" target="_blank">立即开始挖矿</a>
+<section class="section" id="profit">
+  <h2 id="profit-title">每日收益示例</h2>
+  <div class="cards">
+    <div class="card fade-in">
+      <img src="images/coin1.png" alt="收益1">
+      <h3 class="counter" data-target="0.05">0</h3>
+      <p>BTC 每日平均收益</p>
+    </div>
+    <div class="card fade-in">
+      <img src="images/coin2.png" alt="收益2">
+      <h3 class="counter" data-target="1.2">0</h3>
+      <p>ETH 每日平均收益</p>
+    </div>
+    <div class="card fade-in">
+      <img src="images/coin3.png" alt="收益3">
+      <h3 class="counter" data-target="50">0</h3>
+      <p>USDT 每日平均收益</p>
+    </div>
+  </div>
+</section>
 
-    <!-- 真实案例模块 -->
-    <section class="case-section">
-      <h2 style="color:#4a90e2;margin-bottom:1rem;" id="cases-title">真实用户案例</h2>
-      <div class="case-cards">
-        <div class="case-card" style="animation-delay:0s;">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="用户头像">
-          <h3>Alex</h3>
-          <p>每天稳定挖矿，收益透明可靠，操作很简单。</p>
-        </div>
-        <div class="case-card" style="animation-delay:0.3s;">
-          <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="用户头像">
-          <h3>Maria</h3>
-          <p>每天都会查看收益，感觉很安心，适合长期挖矿。</p>
-        </div>
-        <div class="case-card" style="animation-delay:0.6s;">
-          <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="用户头像">
-          <h3>John</h3>
-          <p>收益透明，随时提现，操作很方便，非常适合新手。</p>
-        </div>
-      </div>
-    </section>
+<section class="section" id="steps">
+  <h2 id="steps-title">快速开始操作</h2>
+  <div class="steps">
+    <div class="step fade-in">
+      <img src="images/step1.png" alt="步骤1">
+      <h4>注册账户</h4>
+      <p>快速创建您的挖矿账户。</p>
+    </div>
+    <div class="step fade-in">
+      <img src="images/step2.png" alt="步骤2">
+      <h4>充值 USDT</h4>
+      <p>通过 Trust Wallet 充值 USDT 即可开始。</p>
+    </div>
+    <div class="step fade-in">
+      <img src="images/step3.png" alt="步骤3">
+      <h4>开启挖矿</h4>
+      <p>一键启动智能挖矿，开始每日收益。</p>
+    </div>
+  </div>
+</section>
 
-    <!-- 每日收益模块 -->
-    <section class="case-section">
-      <h2 style="color:#4a90e2;margin-bottom:1rem;" id="earnings-title">昨日收益示例</h2>
-      <div class="case-cards">
-        <div class="case-card" style="animation-delay:0s;">
-          <h3>Alex</h3>
-          <p>0.025 BTC</p>
-        </div>
-        <div class="case-card" style="animation-delay:0.3s;">
-          <h3>Maria</h3>
-          <p>0.018 BTC</p>
-        </div>
-        <div class="case-card" style="animation-delay:0.6s;">
-          <h3>John</h3>
-          <p>0.022 BTC</p>
-        </div>
-      </div>
-    </section>
+<section class="section" id="faq">
+  <h2 id="faq-title">常见问题</h2>
+  <div class="cards">
+    <div class="card fade-in">
+      <h3>挖矿安全吗？</h3>
+      <p>平台采用多重安全措施，资金安全有保障。</p>
+    </div>
+    <div class="card fade-in">
+      <h3>如何提现收益？</h3>
+      <p>支持 USDT 提现到您的钱包，操作简单方便。</p>
+    </div>
+    <div class="card fade-in">
+      <h3>每天收益多少？</h3>
+      <p>收益根据投入金额和算力不同而有所差异。</p>
+    </div>
+  </div>
+</section>
 
-  </main>
+<footer>
+  &copy; 2025 智能挖矿平台 版权所有
+</footer>
 
-  <footer>
-    &copy; 2025 Smart Mining Platform
-  </footer>
+<!-- 引入粒子库 -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+// 粒子配置
+particlesJS('particles-js', {
+  "particles": {
+    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+    "color": { "value": "#6e8efb" },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.5, "random": true },
+    "size": { "value": 3, "random": true },
+    "line_linked": { "enable": true, "distance": 150, "color": "#6e8efb", "opacity": 0.4, "width": 1 },
+    "move": { "enable": true, "speed": 2, "direction": "none", "out_mode": "bounce" }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } },
+    "modes": { "repulse": { "distance": 100 }, "push": { "particles_nb": 4 } }
+  },
+  "retina_detect": true
+});
 
-  <script>
-    // 多语言文本
-    const translations = {
-      en: { title:"Smart Crypto Mining Platform", feature1Title:"Secure & Reliable", feature1Desc:"Your funds are fully controlled by you. Smart mining generates daily profits with simple operation.", feature2Title:"Anytime, Anywhere", feature2Desc:"Start mining on mobile or desktop, monitor profits anytime.", feature3Title:"High Returns", feature3Desc:"Daily returns, withdraw anytime, transparent and suitable for long-term investment.", cta:"Start Mining Now", casesTitle:"Real User Cases", earningsTitle:"Yesterday's Earnings" },
-      zh: { title:"智能加密货币挖矿平台", feature1Title:"安全可靠", feature1Desc:"您的资金完全由您掌控，智能挖矿每日产生收益，操作简单，无需复杂设置。", feature2Title:"随时随地", feature2Desc:"手机、电脑均可开启挖矿，随时查看收益，方便快捷。", feature3Title:"高收益", feature3Desc:"每天都有收益，可提现，透明公开，适合长期投资和学习加密货币技术。", cta:"立即开始挖矿", casesTitle:"真实用户案例", earningsTitle:"昨日收益示例" },
-      ar: { title:"منصة التعدين الذكية للعملات المشفرة", feature1Title:"آمن وموثوق", feature1Desc:"أموالك تحت سيطرتك الكاملة، التعدين الذكي يحقق أرباحاً يومية، سهل الاستخدام.", feature2Title:"في أي وقت وأي مكان", feature2Desc:"ابدأ التعدين عبر الهاتف أو الكمبيوتر، وراقب الأرباح في أي وقت.", feature3Title:"عوائد عالية", feature3Desc:"عوائد يومية، سحب في أي وقت، شفاف ومناسب للاستثمار طويل الأمد.", cta:"ابدأ التعدين الآن", casesTitle:"قصص المستخدمين", earningsTitle:"أرباح الأمس" }
-      // 其他语言同理，可继续添加...
-    };
+// 其他脚本（淡入动画 + 数字增长 + 语言）
+const faders = document.querySelectorAll('.fade-in');
+const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+  entries.forEach(entry => {
+    if(!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
+faders.forEach(fader => appearOnScroll.observe(fader));
 
-    const userLang = navigator.language || navigator.userLanguage;
-    let lang = 'en';
-    for (const code in translations) {
-      if(userLang.toLowerCase().startsWith(code)) { lang = code; break; }
+const counters = document.querySelectorAll('.counter');
+const animateCounters = () => {
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = parseFloat(counter.getAttribute('data-target'));
+      const count = parseFloat(counter.innerText);
+      const increment = target / 100;
+      if(count < target){
+        counter.innerText = (count + increment).toFixed(2);
+        requestAnimationFrame(updateCount);
+      } else { counter.innerText = target; }
     }
-    const t = translations[lang];
+    updateCount();
+  });
+}
+window.addEventListener('scroll', () => {
+  const profitSection = document.getElementById('profit');
+  if(window.scrollY + window.innerHeight > profitSection.offsetTop){
+    animateCounters();
+  }
+}, {once:true});
 
-    document.getElementById('title').innerText = t.title;
-    document.getElementById('feature1-title').innerText = t.feature1Title;
-    document.getElementById('feature1-desc').innerText = t.feature1Desc;
-    document.getElementById('feature2-title').innerText = t.feature2Title;
-    document.getElementById('feature2-desc').innerText = t.feature2Desc;
-    document.getElementById('feature3-title').innerText = t.feature3Title;
-    document.getElementById('feature3-desc').innerText = t.feature3Desc;
-    document.getElementById('cta-button').innerText = t.cta;
-    document.getElementById('cases-title').innerText = t.casesTitle;
-    document.getElementById('earnings-title').innerText = t.earningsTitle;
-
-    // 功能块淡入延迟
-    document.querySelectorAll('.feature').forEach((el, idx) => { el.style.animationDelay = `${idx*0.3+0.5}s`; });
-    document.querySelectorAll('.case-card').forEach((el, idx) => { if(!el.style.animationDelay) el.style.animationDelay = `${idx*0.3}s`; });
-  </script>
+// 多语言
+const lang = navigator.language || navigator.userLanguage;
+const translations = {
+  'zh': { 'banner-title':'智能挖矿，轻松收益','banner-desc':'每天获取加密货币收益，只需简单操作','start-btn':'立即开始','about-title':'关于智能挖矿','card1-title':'资产安全','card1-desc':'采用顶级安全技术，保障您的资金安全无忧。','card2-title':'高收益','card2-desc':'智能算法挖矿，每天可获取稳定收益。','card3-title':'操作简单','card3-desc':'无需专业知识，一键开始挖矿。','profit-title':'每日收益示例','steps-title':'快速开始操作','faq-title':'常见问题'},
+  'en': { 'banner-title':'Smart Mining, Easy Profit','banner-desc':'Earn cryptocurrency daily with simple steps','start-btn':'Start Now','about-title':'About Smart Mining','card1-title':'Secure Assets','card1-desc':'Top-level security ensures your funds are safe.','card2-title':'High Profit','card2-desc':'Smart algorithm mining, earn daily stable profit.','card3-title':'Easy to Use','card3-desc':'No expertise needed, start mining with one click.','profit-title':'Daily Profit Example','steps-title':'Quick Start Steps','faq-title':'FAQ'}
+};
+const t = lang.startsWith('zh') ? translations.zh : translations.en;
+Object.keys(t).forEach(id => { const el=document.getElementById(id); if(el) el.innerText = t[id]; });
+</script>
 </body>
 </html>
