@@ -3,212 +3,220 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>智能挖矿平台</title>
+<title>智能挖矿平台 - 3D粒子</title>
 <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-    html,body{height:100%;background:#0b0c17;color:#fff;overflow-x:hidden;}
-    a{text-decoration:none;color:inherit;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+html,body{width:100%;height:100%;background:#0b0c17;color:#fff;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
 
-    /* 粒子背景 */
-    #particles-js{position:fixed;width:100%;height:100%;z-index:-1;}
+/* Canvas全屏背景 */
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;display:block;}
 
-    /* Header */
-    header{
-        text-align:center;
-        padding:120px 20px;
-        background:url('https://images.unsplash.com/photo-1623096193872-77305388f0e8?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat fixed;
-        position: relative;
-        overflow: hidden;
-    }
-    header::after{
-        content:'';
-        position:absolute;top:0;left:0;width:100%;height:100%;
-        background:rgba(0,0,0,0.65);
-    }
-    header h1{
-        font-size:3rem;margin-bottom:20px;opacity:0;
-        animation:fadeIn 1s ease forwards;position:relative;z-index:1;
-    }
-    header p{
-        font-size:1.2rem;margin-bottom:50px;opacity:0;
-        animation:fadeIn 1.5s ease forwards;position:relative;z-index:1;
-    }
-    header button{
-        padding:15px 35px;font-size:1.2rem;
-        background:linear-gradient(90deg,#ff7e5f,#feb47b);
-        border:none;border-radius:35px;cursor:pointer;
-        position:relative;z-index:1;color:#fff;font-weight:bold;
-        box-shadow:0 0 20px rgba(255,126,95,0.6);
-        transition:transform 0.3s, box-shadow 0.3s;
-        animation:buttonGlow 2s infinite alternate;
-        overflow:hidden;
-    }
-    header button:hover{
-        transform:scale(1.1) rotate(-2deg);
-        box-shadow:0 0 35px rgba(255,126,95,0.9);
-    }
+/* Header */
+header{
+    text-align:center;
+    padding:120px 20px;
+    position: relative;
+    z-index:1;
+}
+header h1{font-size:3rem;margin-bottom:20px;opacity:0;animation:fadeIn 1s forwards;}
+header p{font-size:1.2rem;margin-bottom:50px;opacity:0;animation:fadeIn 1.5s forwards;}
+header button{
+    padding:15px 35px;font-size:1.2rem;background:linear-gradient(90deg,#ff7e5f,#feb47b);
+    border:none;border-radius:35px;color:#fff;font-weight:bold;
+    cursor:pointer;box-shadow:0 0 20px rgba(255,126,95,0.6);
+    animation:buttonGlow 2s infinite alternate; transition: transform 0.3s, box-shadow 0.3s;
+}
+header button:hover{transform:scale(1.1) rotate(-2deg);box-shadow:0 0 35px rgba(255,126,95,0.9);}
 
-    @keyframes fadeIn{to{opacity:1;}}
-    @keyframes buttonGlow{
-        0%{box-shadow:0 0 10px rgba(255,126,95,0.4);}
-        50%{box-shadow:0 0 25px rgba(255,126,95,0.8);}
-        100%{box-shadow:0 0 10px rgba(255,126,95,0.4);}
-    }
+@keyframes fadeIn{to{opacity:1;}}
+@keyframes buttonGlow{
+    0%{box-shadow:0 0 10px rgba(255,126,95,0.4);}
+    50%{box-shadow:0 0 25px rgba(255,126,95,0.8);}
+    100%{box-shadow:0 0 10px rgba(255,126,95,0.4);}
+}
 
-    /* Features */
-    .features{
-        display:flex;flex-wrap:wrap;justify-content:center;gap:25px;padding:80px 20px;
-    }
-    .feature{
-        background: rgba(255,255,255,0.05); padding:35px; border-radius:25px; width:260px;
-        text-align:center; transition: transform 0.5s, opacity 0.7s; opacity:0; transform:translateY(30px);
-    }
-    .feature.show{opacity:1; transform:translateY(0);}
-    .feature h3{margin-bottom:15px;}
-    .feature p{font-size:0.95rem; line-height:1.4;}
+/* Features */
+.features{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;padding:80px 20px;}
+.feature{
+    background: rgba(255,255,255,0.05); padding:35px; border-radius:25px; width:260px;
+    text-align:center; transition: transform 0.5s, opacity 0.7s; opacity:0; transform:translateY(30px);
+}
+.feature.show{opacity:1;transform:translateY(0);}
+.feature h3{margin-bottom:15px;}
+.feature p{font-size:0.95rem;line-height:1.4;}
 
-    /* Counter Section */
-    .counter-section{
-        position:relative;text-align:center;padding:100px 20px;background:#0f101a;overflow:hidden;
-    }
-    .counter-section h2{margin-bottom:20px;font-size:2.5rem;}
-    .counter{
-        font-size:3rem;color:#ff7e5f;font-weight:bold;text-shadow:0 0 15px #ff7e5f;
-    }
-    #curve{
-        position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;
-    }
+/* Counter Section */
+.counter-section{
+    position:relative;text-align:center;padding:100px 20px;background:rgba(15,16,26,0.8);overflow:hidden;
+}
+.counter-section h2{margin-bottom:20px;font-size:2.5rem;}
+.counter{font-size:3rem;color:#ff7e5f;font-weight:bold;text-shadow:0 0 15px #ff7e5f;}
+#curve{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
 
-    /* Parallax */
-    .parallax{transform:translateY(0);transition:transform 0.1s;}
-
-    /* Responsive */
-    @media(max-width:768px){
-        header h1{font-size:2.2rem;}
-        header p{font-size:1rem;}
-        .feature{width:90%;}
-    }
+/* Responsive */
+@media(max-width:768px){
+    header h1{font-size:2.2rem;}
+    header p{font-size:1rem;}
+    .feature{width:90%;}
+}
 </style>
 </head>
 <body>
 
-<div id="particles-js"></div>
+<canvas id="bg-canvas"></canvas>
 
-<header class="parallax">
-    <h1 id="title">智能挖矿平台</h1>
-    <p id="subtitle">通过我们的平台轻松产生算力，获得每日收益</p>
-    <button id="startBtn">立即开始</button>
+<header>
+    <h1 id="title"></h1>
+    <p id="subtitle"></p>
+    <button id="startBtn"></button>
 </header>
 
 <section class="features">
     <div class="feature">
-        <h3>高收益</h3>
-        <p>每天都能获得稳定收益，让资产增长更轻松。</p>
+        <h3 id="feature1-title"></h3>
+        <p id="feature1-desc"></p>
     </div>
     <div class="feature">
-        <h3>安全保障</h3>
-        <p>资金托管安全可靠，放心使用，无需担心资产问题。</p>
+        <h3 id="feature2-title"></h3>
+        <p id="feature2-desc"></p>
     </div>
     <div class="feature">
-        <h3>简单易用</h3>
-        <p>无需复杂操作，一键开启智能挖矿。</p>
+        <h3 id="feature3-title"></h3>
+        <p id="feature3-desc"></p>
     </div>
 </section>
 
 <section class="counter-section">
-    <h2>当前总算力</h2>
+    <h2 id="counter-title"></h2>
     <div id="counter" class="counter">0</div>
     <canvas id="curve"></canvas>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
-    // 粒子效果
-    particlesJS("particles-js",{
-        "particles":{
-            "number":{"value":120},
-            "color":{"value":"#ffffff"},
-            "shape":{"type":"circle"},
-            "opacity":{"value":0.7},
-            "size":{"value":3},
-            "line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.25,"width":1},
-            "move":{"enable":true,"speed":3,"direction":"none","out_mode":"out"}
-        },
-        "interactivity":{"events":{"onhover":{"enable":true,"mode":"repulse"}}}
+/* ------------------ 多语言文字 ------------------ */
+const LANGS = {
+    zh: { title: "智能挖矿平台", subtitle: "通过我们的平台轻松产生算力，获得每日收益", startBtn: "立即开始",
+        features: [
+            {title:"高收益", desc:"每天都能获得稳定收益，让资产增长更轻松。"},
+            {title:"安全保障", desc:"资金托管安全可靠，放心使用，无需担心资产问题。"},
+            {title:"简单易用", desc:"无需复杂操作，一键开启智能挖矿。"}],
+        counter: "当前总算力" },
+    en: { title: "Smart Mining Platform", subtitle: "Easily generate mining power and earn daily rewards", startBtn: "Get Started",
+        features: [
+            {title:"High Yield", desc:"Earn stable daily rewards and grow your assets easily."},
+            {title:"Secure", desc:"Funds are safely managed and reliable."},
+            {title:"Easy to Use", desc:"Start mining with just one click."}],
+        counter: "Current Total Hashrate" },
+    fr: { title: "Plateforme de Minage Intelligent", subtitle: "Générez facilement de la puissance minière et recevez des récompenses quotidiennes", startBtn: "Commencer",
+        features: [
+            {title:"Haut Rendement", desc:"Recevez des récompenses stables chaque jour et faites croître vos actifs facilement."},
+            {title:"Sécurité", desc:"Les fonds sont gérés de manière sûre et fiable."},
+            {title:"Facile à Utiliser", desc:"Commencez le minage en un clic."}],
+        counter: "Puissance totale actuelle" },
+    ar: { title: "منصة التعدين الذكي", subtitle: "قم بتوليد قوة التعدين بسهولة واحصل على أرباح يومية", startBtn: "ابدأ الآن",
+        features: [
+            {title:"عائد مرتفع", desc:"احصل على أرباح يومية مستقرة وزد أصولك بسهولة."},
+            {title:"أمان", desc:"الأموال مُدارة بأمان وموثوقة."},
+            {title:"سهل الاستخدام", desc:"ابدأ التعدين بنقرة واحدة."}],
+        counter: "إجمالي قوة التعدين الحالية" }
+};
+
+const userLang = navigator.language.slice(0,2);
+const lang = LANGS[userLang] || LANGS['zh'];
+
+// 替换文字
+document.getElementById('title').textContent = lang.title;
+document.getElementById('subtitle').textContent = lang.subtitle;
+document.getElementById('startBtn').textContent = lang.startBtn;
+document.getElementById('feature1-title').textContent = lang.features[0].title;
+document.getElementById('feature1-desc').textContent = lang.features[0].desc;
+document.getElementById('feature2-title').textContent = lang.features[1].title;
+document.getElementById('feature2-desc').textContent = lang.features[1].desc;
+document.getElementById('feature3-title').textContent = lang.features[2].title;
+document.getElementById('feature3-desc').textContent = lang.features[2].desc;
+document.getElementById('counter-title').textContent = lang.counter;
+
+if(userLang==='ar'){document.body.style.direction='rtl';}
+
+/* ------------------ 数字动态增长 ------------------ */
+const counter = document.getElementById('counter');
+let count = 0;
+const target = 12560;
+const increment = target/200;
+function updateCounter(){count+=increment;if(count<target){counter.textContent=Math.floor(count);requestAnimationFrame(updateCounter);}else{counter.textContent=target;}}
+updateCounter();
+
+/* ------------------ Features渐显 ------------------ */
+window.addEventListener('scroll',()=>{
+    document.querySelectorAll('.feature').forEach(el=>{
+        if(el.getBoundingClientRect().top < window.innerHeight-100) el.classList.add('show');
     });
+});
 
-    // 语言识别
-    const userLang=navigator.language||navigator.userLanguage;
-    const titleEl=document.getElementById('title');
-    const subtitleEl=document.getElementById('subtitle');
-    const startBtn=document.getElementById('startBtn');
-    if(userLang.startsWith('en')){
-        titleEl.textContent="Smart Mining Platform";
-        subtitleEl.textContent="Easily generate mining power and earn daily rewards";
-        startBtn.textContent="Get Started";
-    } else if(userLang.startsWith('fr')){
-        titleEl.textContent="Plateforme de Minage Intelligent";
-        subtitleEl.textContent="Générez facilement de la puissance minière et recevez des récompenses quotidiennes";
-        startBtn.textContent="Commencer";
-    } else if(userLang.startsWith('ar')){
-        titleEl.textContent="منصة التعدين الذكي";
-        subtitleEl.textContent="قم بتوليد قوة التعدين بسهولة واحصل على أرباح يومية";
-        startBtn.textContent="ابدأ الآن";
-        document.body.style.direction='rtl';
-    }
+/* ------------------ 曲线收益动画 ------------------ */
+const curveCanvas = document.getElementById('curve');
+const ctx = curveCanvas.getContext('2d');
+function resizeCurve(){curveCanvas.width = window.innerWidth; curveCanvas.height = 200;}
+resizeCurve();
+window.addEventListener('resize',resizeCurve);
+let points=[];
+function addPoint(){const lastY=points.length?points[points.length-1].y:150;const y=lastY+(Math.random()*10-5);points.push({x:points.length*5,y:y});if(points.length*5>curveCanvas.width) points.shift();}
+function drawCurve(){ctx.clearRect(0,0,curveCanvas.width,curveCanvas.height);ctx.beginPath();ctx.moveTo(0,curveCanvas.height);points.forEach(p=>ctx.lineTo(p.x,p.y));ctx.lineTo(curveCanvas.width,curveCanvas.height);const gradient=ctx.createLinearGradient(0,0,curveCanvas.width,0);gradient.addColorStop(0,'rgba(255,126,95,0.6)');gradient.addColorStop(0.5,'rgba(255,200,100,0.4)');gradient.addColorStop(1,'rgba(255,126,95,0.6)');ctx.fillStyle=gradient;ctx.shadowBlur=15;ctx.shadowColor='rgba(255,126,95,0.5)';ctx.fill();requestAnimationFrame(drawCurve);}
+function animateCurve(){addPoint();requestAnimationFrame(animateCurve);}
+drawCurve();animateCurve();
 
-    // 数字动态增长
-    const counter=document.getElementById('counter');
-    let count=0;
-    const target=12560;
-    const increment=target/200;
-    function updateCounter(){count+=increment;if(count<target){counter.textContent=Math.floor(count);requestAnimationFrame(updateCounter);}else{counter.textContent=target;}}
-    updateCounter();
+/* ------------------ 全屏3D粒子 + 鼠标交互 ------------------ */
+const canvas = document.getElementById('bg-canvas');
+const c = canvas.getContext('2d');
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+window.addEventListener('resize',()=>{width=canvas.width=window.innerWidth;height=canvas.height=window.innerHeight;});
 
-    // 滚动视差和Features渐显
-    const header=document.querySelector('header.parallax');
-    window.addEventListener('scroll',()=>{
-        const offset=window.pageYOffset;
-        header.style.transform=`translateY(${offset*0.25}px)`;
-        document.querySelectorAll('.feature').forEach(el=>{
-            const top=el.getBoundingClientRect().top;
-            if(top<window.innerHeight-100) el.classList.add('show');
-        });
+const particles = [];
+const particleCount = 150;
+for(let i=0;i<particleCount;i++){
+    particles.push({x:Math.random()*width,y:Math.random()*height,z:Math.random()*width,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5,vz:(Math.random()-0.5)*0.5});
+}
+
+// 鼠标位置
+const mouse = {x:width/2, y:height/2};
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX; mouse.y=e.clientY;});
+window.addEventListener('touchmove',e=>{mouse.x=e.touches[0].clientX; mouse.y=e.touches[0].clientY;});
+
+// 粒子绘制
+function drawParticles(){
+    c.clearRect(0,0,width,height);
+    particles.forEach(p=>{
+        // 更新位置
+        p.x += p.vx; p.y += p.vy; p.z += p.vz;
+        if(p.x<0||p.x>width) p.vx*=-1;
+        if(p.y<0||p.y>height) p.vy*=-1;
+
+        // 鼠标吸引力
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const dist = Math.sqrt(dx*dx+dy*dy);
+        const force = Math.min(100/dist,0.05);
+        p.vx += dx*force*0.01;
+        p.vy += dy*force*0.01;
+
+        // 透视缩放
+        const scale = 300/(300+p.z);
+        const x2d = (p.x-width/2)*scale + width/2;
+        const y2d = (p.y-height/2)*scale + height/2;
+        const radius = scale*2;
+
+        // 绘制粒子
+        c.beginPath(); 
+        c.arc(x2d,y2d,radius,0,Math.PI*2); 
+        c.fillStyle='rgba(255,255,255,'+(0.7*scale)+')'; 
+        c.fill();
     });
-
-    // 曲线收益动画
-    const canvas=document.getElementById('curve');
-    const ctx=canvas.getContext('2d');
-    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=200;}
-    resizeCanvas();
-    window.addEventListener('resize',resizeCanvas);
-
-    let points=[];
-    function addPoint(){
-        const lastY=points.length?points[points.length-1].y:150;
-        const y=lastY + (Math.random()*10-5);
-        points.push({x:points.length*5,y:y});
-        if(points.length*5>canvas.width) points.shift();
-    }
-    function drawCurve(){
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        ctx.beginPath();
-        ctx.moveTo(0,canvas.height);
-        points.forEach(p=>ctx.lineTo(p.x,p.y));
-        ctx.lineTo(canvas.width,canvas.height);
-        const gradient=ctx.createLinearGradient(0,0,canvas.width,0);
-        gradient.addColorStop(0,'rgba(255,126,95,0.6)');
-        gradient.addColorStop(0.5,'rgba(255,200,100,0.4)');
-        gradient.addColorStop(1,'rgba(255,126,95,0.6)');
-        ctx.fillStyle=gradient;
-        ctx.shadowBlur=15;
-        ctx.shadowColor='rgba(255,126,95,0.5)';
-        ctx.fill();
-        requestAnimationFrame(drawCurve);
-    }
-    function animateCurve(){addPoint();requestAnimationFrame(animateCurve);}
-    drawCurve();
-    animateCurve();
+    requestAnimationFrame(drawParticles);
+}
+drawParticles();
 </script>
+
 </body>
 </html>
